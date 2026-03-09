@@ -2,14 +2,14 @@
 name: visual-guide
 description: >-
     Use when building frontend UI components or pages. Covers brand colors,
-    typography scales, spacing tokens, button styles, dark theme, and layout
-    constraints.
+    typography scales, spacing tokens, button styles, dark/light themes, and
+    layout constraints.
 license: MIT
 metadata:
     author: wjohnsto
-    version: '1.0'
+    version: '2.0'
     category: reference
-    triggers: frontend, UI, colors, typography, brand, theme, icons, buttons
+    triggers: frontend, UI, colors, typography, brand, theme, light, dark, icons, buttons
 ---
 
 # Visual Guide
@@ -19,57 +19,53 @@ metadata:
 - Choosing colors, fonts, or spacing for UI components
 - Creating new pages or layouts
 - Styling buttons, headings, or body text
-- Implementing dark theme
+- Implementing dark or light theme
 - Checking brand-correct color values or CSS variable names
 
 ## Typography
 
-This project uses two font families, assigned to CSS custom properties.
+This project uses three font families, assigned to CSS custom properties.
 
 ### Font Families
 
-| Variable           | Type       | Weights       | Usage                                |
-| ------------------ | ---------- | ------------- | ------------------------------------ |
-| `--primary-font`   | Sans-serif | 400, 500, 700 | Headings, body text, buttons, UI     |
-| `--secondary-font` | Monospace  | 400, 700      | Code, eyebrow labels, technical text |
+| Variable       | Type       | Stack                  | Weights       | Usage                                |
+| -------------- | ---------- | ---------------------- | ------------- | ------------------------------------ |
+| `--font-sans`  | Sans-serif | `system-ui, sans-serif`| 400, 500, 700 | Headings, body text, buttons, UI     |
+| `--font-serif` | Serif      | `serif`                | 400, 700      | Long-form prose, editorial content   |
+| `--font-mono`  | Monospace  | `monospace`            | 400, 700      | Code, eyebrow labels, technical text |
 
-**Font stacks:**
-
-- `--primary-font`: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif`
-- `--secondary-font`: `'SF Mono', 'Fira Code', 'Cascadia Code', monospace`
-
-Always include a `sans-serif` fallback for the primary font, and `monospace` for the secondary font.
+Default font family: `var(--font-sans)`.
 
 ### Heading Scale
 
-Headings use the primary font at most sizes, transitioning to the secondary (monospace) font at the `xs` size for eyebrow labels.
+Headings use the sans font at most sizes, transitioning to the monospace font at the `xs` size for eyebrow labels.
 
-| Size Token | Font               | Desktop Size | Mobile Size | Line Height | Notes                           |
-| ---------- | ------------------ | ------------ | ----------- | ----------- | ------------------------------- |
-| `3xl`      | `--primary-font`   | 180px        | 84px        | 90%         | letter-spacing: -0.01em         |
-| `2xl`      | `--primary-font`   | 100px        | 80px        | 85%         | uppercase, letter-spacing: -1px |
-| `xl`       | `--primary-font`   | 120px        | 80px        | 82%         | letter-spacing: -0.01em         |
-| `lg`       | `--primary-font`   | 64px         | 40px        | 105%        |                                 |
-| `md`       | `--primary-font`   | 50px         | 30px        | 110%        | letter-spacing: -0.02em         |
-| `rg`       | `--primary-font`   | 40px         | 30px        | 105%        |                                 |
-| `sm`       | `--primary-font`   | 26px         | 22px        | 31px        |                                 |
-| `xs`       | `--secondary-font` | 14px         | 12px        | 16.8px      | letter-spacing: 1px             |
+| Size Token | Font          | Desktop Size | Mobile Size | Line Height | Notes                           |
+| ---------- | ------------- | ------------ | ----------- | ----------- | ------------------------------- |
+| `3xl`      | `--font-sans` | 11.25rem     | 5.25rem     | 90%         | letter-spacing: -0.01em         |
+| `2xl`      | `--font-sans` | 6.25rem      | 5rem        | 85%         | uppercase, letter-spacing: -1px |
+| `xl`       | `--font-sans` | 7.5rem       | 5rem        | 82%         | letter-spacing: -0.01em         |
+| `lg`       | `--font-sans` | 4rem         | 2.5rem      | 105%        |                                 |
+| `md`       | `--font-sans` | 3.125rem     | 1.875rem    | 110%        | letter-spacing: -0.02em         |
+| `rg`       | `--font-sans` | 2.5rem       | 1.875rem    | 105%        |                                 |
+| `sm`       | `--font-sans` | 1.625rem     | 1.375rem    | 1.9375rem   |                                 |
+| `xs`       | `--font-mono` | 0.875rem     | 0.75rem     | 1.05rem     | letter-spacing: 1px             |
 
 ### Body Text Scale
 
-Body text always uses `--primary-font`.
+Body text always uses `--font-sans`.
 
 | Size Token | Desktop Size | Mobile Size | Line Height |
 | ---------- | ------------ | ----------- | ----------- |
-| `3xl`      | 32px         | 24px        | 120%        |
-| `2xl`      | 24px         | —           | 120%        |
-| `xl`       | 22px         | —           | —           |
-| `lg`       | 20px         | —           | 145%        |
-| `md`       | 18px         | —           | 150%        |
-| `sm`       | 16px         | 14px        | 160%        |
-| `rg`       | 14px         | 12px        | 150%        |
-| `xs`       | 12px         | —           | 150%        |
-| `2xs`      | 10px         | —           | 150%        |
+| `3xl`      | 2rem         | 1.5rem      | 120%        |
+| `2xl`      | 1.5rem       | —           | 120%        |
+| `xl`       | 1.375rem     | —           | —           |
+| `lg`       | 1.25rem      | —           | 145%        |
+| `md`       | 1.125rem     | —           | 150%        |
+| `sm`       | 1rem         | 0.875rem    | 160%        |
+| `rg`       | 0.875rem     | 0.75rem     | 150%        |
+| `xs`       | 0.75rem      | —           | 150%        |
+| `2xs`      | 0.625rem     | —           | 150%        |
 
 ### Font Weights
 
@@ -82,152 +78,219 @@ Body text always uses `--primary-font`.
 
 ## Colors
 
-### Brand Core
+Color palettes are sourced from the [Nightfox](https://github.com/EdenEast/nightfox.nvim) theme family. The dark theme uses **CarbonFox** and the light theme uses **DayFox**.
 
-| Name          | Variable          | Hex       | Usage                          |
-| ------------- | ----------------- | --------- | ------------------------------ |
-| Primary Color | `--primary-color` | `#FF4438` | Primary brand color            |
-| Midnight      | `--midnight`      | `#091A23` | Dark backgrounds, primary text |
-| Yellow (Volt) | `--yellow`        | `#DCFF1E` | Accent on dark, highlights     |
-| White         | `--base-white`    | `#FFFFFF` | Light backgrounds              |
-| Black         | `--base-black`    | `#000000` | —                              |
+Accent color variables follow the pattern `--{color}`, `--{color}-dim`, and `--{color}-bright`.
 
-### Red / Hyper Scale
+### Dark Palette (CarbonFox)
 
-The primary action color scale, used for buttons, links, and interactive elements.
+#### Backgrounds
 
-| Name     | Variable     | Hex       | Usage                           |
-| -------- | ------------ | --------- | ------------------------------- |
-| Hyper 04 | `--hyper-04` | `#FD736A` | Light red, hover accents        |
-| Hyper 05 | `--hyper-05` | `#FF4438` | Same as Primary Color           |
-| Hyper 06 | `--hyper-06` | `#EB352A` | Slightly darker red             |
-| Hyper 07 | `--hyper-07` | `#E4291E` | Primary button bg, links        |
-| Hyper 08 | `--hyper-08` | `#D1281E` | Button hover bg                 |
-| Hyper 09 | `--hyper-09` | `#8A221C` | Deep red, active states         |
-| Hyper 10 | `--hyper-10` | `#351D22` | Darkest red, dark theme buttons |
+Layered surface colors, from deepest to highest elevation.
 
-### Neutrals (Black Scale)
+| Name | Variable | Hex       | Usage                |
+| ---- | -------- | --------- | -------------------- |
+| bg0  | `--bg0`  | `#0c0c0c` | Base/root background |
+| bg1  | `--bg1`  | `#161616` | Primary surface      |
+| bg2  | `--bg2`  | `#252525` | Elevated surface     |
+| bg3  | `--bg3`  | `#353535` | Active/hover surface |
+| bg4  | `--bg4`  | `#535353` | Highest elevation    |
 
-| Name     | Variable     | Hex       |
-| -------- | ------------ | --------- |
-| Black 90 | `--black-90` | `#191919` |
-| Black 70 | `--black-70` | `#4C4C4C` |
-| Black 60 | `--black-60` | `#6D6E71` |
-| Black 50 | `--black-50` | `#808080` |
-| Black 30 | `--black-30` | `#B2B2B2` |
-| Black 10 | `--black-10` | `#E5E5E5` |
+#### Foregrounds
 
-### Neutrals (Grey Scale)
+Text colors, from brightest to most muted.
 
-| Name       | Variable       | Hex       |
-| ---------- | -------------- | --------- |
-| Grey 50    | `--grey-50`    | `#F9FAFB` |
-| Grey 20    | `--grey-20`    | `#E9E9E9` |
-| Grey 10    | `--grey-10`    | `#FCFCFC` |
-| Light Gray | `--light-gray` | `#F8F8F8` |
+| Name | Variable | Hex       | Usage                     |
+| ---- | -------- | --------- | ------------------------- |
+| fg0  | `--fg0`  | `#f9fbff` | Primary/heading text      |
+| fg1  | `--fg1`  | `#f2f4f8` | Body text                 |
+| fg2  | `--fg2`  | `#b6b8bb` | Muted/secondary text      |
+| fg3  | `--fg3`  | `#7b7c7e` | Disabled/placeholder text |
 
-### Dusk Scale (Blue-Grey)
+#### Selection
 
-Used for dark themes, muted text, borders, and subtle backgrounds.
+| Name | Variable | Hex       | Usage                |
+| ---- | -------- | --------- | -------------------- |
+| sel0 | `--sel0` | `#2a2a2a` | Selection background |
+| sel1 | `--sel1` | `#525253` | Active selection     |
 
-| Name    | Variable    | Hex       | Usage                            |
-| ------- | ----------- | --------- | -------------------------------- |
-| Dusk    | `--dusk`    | `#163341` | Dark UI surfaces                 |
-| Dusk 01 | `--dusk-01` | `#F3F3F3` | Light primary button bg          |
-| Dusk 09 | `--dusk-09` | `#0D212C` | Deepest dark surface             |
-| Dusk 10 | `--dusk-10` | `#D9D9D9` | Borders, body text (dark theme)  |
-| Dusk 30 | `--dusk-30` | `#B9C2C6` | Borders, muted text (dark theme) |
-| Dusk 50 | `--dusk-50` | `#8A99A0` | Placeholder text, dividers       |
-| Dusk 90 | `--dusk-90` | `#2D4754` | Dark surface variant             |
+#### Comment
 
-### Yellow / Volt Scale
+| Variable    | Hex       |
+| ----------- | --------- |
+| `--comment` | `#6e6f70` |
 
-Used as an accent color, especially on dark backgrounds.
+#### Accent Colors
 
-| Name      | Variable      | Hex       |
-| --------- | ------------- | --------- |
-| Yellow    | `--yellow`    | `#DCFF1E` |
-| Yellow 06 | `--yellow-06` | `#D0F41D` |
-| Yellow 07 | `--yellow-07` | `#BFE112` |
-| Yellow 08 | `--yellow-08` | `#A9CA03` |
-| Yellow 09 | `--yellow-09` | `#8CAA00` |
-| Yellow 10 | `--yellow-10` | `#FBFFE8` |
-| Yellow 11 | `--yellow-11` | `#4E5F02` |
-| Yellow 50 | `--yellow-50` | `#F1FFA5` |
+| Color   | Dim       | Base      | Bright    | Usage                                   |
+| ------- | --------- | --------- | --------- | --------------------------------------- |
+| Blue    | `#6690d9` | `#78a9ff` | `#8cb6ff` | Primary accent, links, focus rings      |
+| Cyan    | `#2b96d9` | `#33b1ff` | `#52bdff` | Info, highlights, secondary interactive |
+| Green   | `#1fa25a` | `#25be6a` | `#46c880` | Success states, confirmations           |
+| Red     | `#ca4780` | `#ee5396` | `#f16da6` | Errors, destructive actions             |
+| Pink    | `#d96b9b` | `#ff7eb6` | `#ff91c1` | Decorative accents, badges              |
+| Magenta | `#a27fd9` | `#be95ff` | `#c8a5ff` | Warnings, emphasis, tags                |
+| Teal    | `#07a19e` | `#08bdba` | `#2dc7c4` | Tertiary accent, types                  |
 
-### Purple Scale
+### Light Palette (DayFox)
 
-| Name      | Variable      | Hex       |
-| --------- | ------------- | --------- |
-| Purple 05 | `--purple-05` | `#B76BE2` |
-| Purple 07 | `--purple-07` | `#8F2EC4` |
-| Violet    | `--violet`    | `#C795E3` |
-| Violet 09 | `--violet-09` | `#592479` |
-| Violet 10 | `--violet-10` | `#F9F4FC` |
-| Violet 50 | `--violet-50` | `#E3CAF1` |
-| Violet 90 | `--violet-90` | `#5925E8` |
+#### Backgrounds
 
-### Sky Blue Scale
+Layered surface colors. In light theme, the base is lightest and elevation increases toward darker values.
 
-| Name        | Variable        | Hex       |
-| ----------- | --------------- | --------- |
-| Sky Blue    | `--sky-blue`    | `#80DBFF` |
-| Sky Blue 09 | `--sky-blue-09` | `#0477A5` |
-| Sky Blue 10 | `--sky-blue-10` | `#F2FBFF` |
-| Sky Blue 50 | `--sky-blue-50` | `#BFEDFF` |
-| Light Blue  | `--light-blue`  | `#F9FDFF` |
+| Name | Variable | Hex       | Usage                |
+| ---- | -------- | --------- | -------------------- |
+| bg0  | `--bg0`  | `#e4dcd4` | Recessed surface     |
+| bg1  | `--bg1`  | `#f6f2ee` | Base/root background |
+| bg2  | `--bg2`  | `#dbd1dd` | Elevated surface     |
+| bg3  | `--bg3`  | `#d3c7bb` | Active/hover surface |
+| bg4  | `--bg4`  | `#aab0ad` | Highest elevation    |
+
+#### Foregrounds
+
+Text colors, from darkest to most muted.
+
+| Name | Variable | Hex       | Usage                     |
+| ---- | -------- | --------- | ------------------------- |
+| fg0  | `--fg0`  | `#302b5d` | Primary/heading text      |
+| fg1  | `--fg1`  | `#3d2b5a` | Body text                 |
+| fg2  | `--fg2`  | `#643f61` | Muted/secondary text      |
+| fg3  | `--fg3`  | `#824d5b` | Disabled/placeholder text |
+
+#### Selection
+
+| Name | Variable | Hex       | Usage                |
+| ---- | -------- | --------- | -------------------- |
+| sel0 | `--sel0` | `#e7d2be` | Selection background |
+| sel1 | `--sel1` | `#a4c1c2` | Active selection     |
+
+#### Comment
+
+| Variable    | Hex       |
+| ----------- | --------- |
+| `--comment` | `#837a72` |
+
+#### Accent Colors
+
+| Color   | Dim       | Base      | Bright    | Usage                                   |
+| ------- | --------- | --------- | --------- | --------------------------------------- |
+| Blue    | `#223d90` | `#2848a9` | `#4863b6` | Primary accent, links, focus rings      |
+| Cyan    | `#22676d` | `#287980` | `#488d93` | Info, highlights, secondary interactive |
+| Green   | `#30583c` | `#396847` | `#577f63` | Success states, confirmations           |
+| Red     | `#8c1d28` | `#a5222f` | `#b3434e` | Errors, destructive actions             |
+| Pink    | `#8b369a` | `#a440b5` | `#b25dc0` | Decorative accents, badges              |
+| Magenta | `#5e2baf` | `#6e33ce` | `#8452d5` | Warnings, emphasis, tags                |
+| Yellow  | `#924702` | `#ac5402` | `#b86e28` | Cautions, attention indicators          |
 
 ## Theming
 
-This project uses a dark theme.
+This project supports dark and light themes via `color-scheme`.
 
 ### Dark Theme
 
-| Semantic Token     | Maps To        | Resolved Value |
-| ------------------ | -------------- | -------------- |
-| `--bg-default`     | `--midnight`   | `#091A23`      |
-| `--fg-default`     | `--base-white` | `#FFFFFF`      |
-| `--fg-body`        | `--dusk-10`    | `#D9D9D9`      |
-| `--fg-muted`       | `--dusk-30`    | `#B9C2C6`      |
-| `--fg-brand`       | `--yellow`     | `#DCFF1E`      |
-| `--border`         | `--dusk`       | `#163341`      |
-| `--stroke-divider` | `--dusk-50`    | `#8A99A0`      |
+`color-scheme: dark`
+
+| Semantic Token     | Maps To  | Resolved Value |
+| ------------------ | -------- | -------------- |
+| `--bg-default`     | `--bg0`  | `#0c0c0c`      |
+| `--bg-surface`     | `--bg1`  | `#161616`      |
+| `--bg-elevated`    | `--bg2`  | `#252525`      |
+| `--fg-default`     | `--fg0`  | `#f9fbff`      |
+| `--fg-body`        | `--fg1`  | `#f2f4f8`      |
+| `--fg-muted`       | `--fg2`  | `#b6b8bb`      |
+| `--fg-disabled`    | `--fg3`  | `#7b7c7e`      |
+| `--border`         | `--bg3`  | `#353535`      |
+| `--stroke-divider` | `--bg4`  | `#535353`      |
+
+### Light Theme
+
+`color-scheme: light`
+
+| Semantic Token     | Maps To  | Resolved Value |
+| ------------------ | -------- | -------------- |
+| `--bg-default`     | `--bg1`  | `#f6f2ee`      |
+| `--bg-surface`     | `--bg0`  | `#e4dcd4`      |
+| `--bg-elevated`    | `--bg2`  | `#dbd1dd`      |
+| `--fg-default`     | `--fg0`  | `#302b5d`      |
+| `--fg-body`        | `--fg1`  | `#3d2b5a`      |
+| `--fg-muted`       | `--fg2`  | `#643f61`      |
+| `--fg-disabled`    | `--fg3`  | `#824d5b`      |
+| `--border`         | `--bg3`  | `#d3c7bb`      |
+| `--stroke-divider` | `--bg4`  | `#aab0ad`      |
+
+### Semantic Colors
+
+#### Dark
+
+| Token       | Maps To      | Resolved Value | Usage                    |
+| ----------- | ------------ | -------------- | ------------------------ |
+| `--accent`  | `--blue`     | `#78a9ff`      | Primary interactive      |
+| `--error`   | `--red`      | `#ee5396`      | Errors, destructive      |
+| `--warning` | `--magenta`  | `#be95ff`      | Warnings, cautions       |
+| `--success` | `--green`    | `#25be6a`      | Confirmations, positive  |
+| `--info`    | `--cyan`     | `#33b1ff`      | Informational highlights |
+
+#### Light
+
+| Token       | Maps To      | Resolved Value | Usage                    |
+| ----------- | ------------ | -------------- | ------------------------ |
+| `--accent`  | `--blue`     | `#2848a9`      | Primary interactive      |
+| `--error`   | `--red`      | `#a5222f`      | Errors, destructive      |
+| `--warning` | `--yellow`   | `#ac5402`      | Warnings, cautions       |
+| `--success` | `--green`    | `#396847`      | Confirmations, positive  |
+| `--info`    | `--cyan`     | `#287980`      | Informational highlights |
 
 ## Buttons
 
 ### Primary Button (Dark Theme)
 
-| State   | Background   | Border       | Text Color     |
-| ------- | ------------ | ------------ | -------------- |
-| Default | `--hyper-10` | `--hyper-05` | `--base-white` |
-| Hover   | `--hyper-09` | `--hyper-06` | `--base-white` |
-| Active  | `--hyper-09` | `--hyper-06` | `--base-white` |
+| State   | Background       | Border           | Text Color |
+| ------- | ---------------- | ---------------- | ---------- |
+| Default | `--blue`         | `--blue-bright`  | `--bg0`    |
+| Hover   | `--blue-bright`  | `--blue-bright`  | `--bg0`    |
+| Active  | `--blue-dim`     | `--blue`         | `--bg0`    |
 
 ### Secondary Button (Dark Theme)
 
-| State   | Background  | Border      | Text Color     |
-| ------- | ----------- | ----------- | -------------- |
-| Default | `--dusk`    | `--dusk-90` | `--base-white` |
-| Hover   | `--dusk-90` | `--dusk-70` | `--base-white` |
-| Active  | `--dusk-90` | `--dusk-70` | `--base-white` |
+| State   | Background | Border   | Text Color |
+| ------- | ---------- | -------- | ---------- |
+| Default | `--bg2`    | `--bg4`  | `--fg0`    |
+| Hover   | `--bg3`    | `--sel1` | `--fg0`    |
+| Active  | `--bg3`    | `--sel1` | `--fg0`    |
+
+### Primary Button (Light Theme)
+
+| State   | Background       | Border           | Text Color |
+| ------- | ---------------- | ---------------- | ---------- |
+| Default | `--blue`         | `--blue-dim`     | `--bg1`    |
+| Hover   | `--blue-dim`     | `--blue-dim`     | `--bg1`    |
+| Active  | `--blue`         | `--blue`         | `--bg1`    |
+
+### Secondary Button (Light Theme)
+
+| State   | Background | Border   | Text Color |
+| ------- | ---------- | -------- | ---------- |
+| Default | `--bg0`    | `--bg4`  | `--fg0`    |
+| Hover   | `--bg3`    | `--sel1` | `--fg0`    |
+| Active  | `--bg3`    | `--sel1` | `--fg0`    |
 
 ### Button Styling
 
-- Font: `--primary-font`, 14px, weight 500
+- Font: `--font-sans`, 0.875rem, weight 500
 - Border: 1px solid
 - Variants: `pill` (border-radius: 200px), `rounded` (border-radius: 5px), `square` (border-radius: 0)
-- Size tokens: `xs` (4px 8px), `sm` (8px 12px), `md` (10px 24px), `lg` (15px 36px)
+- Size tokens: `xs` (0.25rem 0.5rem), `sm` (0.5rem 0.75rem), `md` (0.625rem 1.5rem), `lg` (0.9375rem 2.25rem)
 
 ## Spacing Tokens
 
-| Token | Desktop | Mobile |
-| ----- | ------- | ------ |
-| `xs`  | 16px    | 16px   |
-| `sm`  | 24px    | 24px   |
-| `md`  | 40px    | 32px   |
-| `rg`  | 48px    | 42px   |
-| `lg`  | 72px    | 62px   |
-| `xl`  | 96px    | 60px   |
+| Token | Desktop  | Mobile   |
+| ----- | -------- | -------- |
+| `xs`  | 1rem     | 1rem     |
+| `sm`  | 1.5rem   | 1.5rem   |
+| `md`  | 2.5rem   | 2rem     |
+| `rg`  | 3rem     | 2.625rem |
+| `lg`  | 4.5rem   | 3.875rem |
+| `xl`  | 6rem     | 3.75rem  |
 
 ## Layout
 
@@ -235,6 +298,7 @@ This project uses a dark theme.
 - Container padding: 24px (80px between 1260px–1600px viewport)
 - Base font size: 16px
 - Text rendering: `optimizeLegibility` with `-webkit-font-smoothing: antialiased`
+- Color scheme: `dark` (default), `light`
 
 ## Icons
 
