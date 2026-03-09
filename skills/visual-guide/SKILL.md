@@ -235,3 +235,44 @@ This project uses a dark theme.
 - Container padding: 24px (80px between 1260px–1600px viewport)
 - Base font size: 16px
 - Text rendering: `optimizeLegibility` with `-webkit-font-smoothing: antialiased`
+
+## Icons
+
+This project uses [Iconoir](https://iconoir.com/), an open-source SVG icon library (MIT licensed).
+
+### Variants
+
+| Variant   | Style   | Count | Use For                                    |
+| --------- | ------- | ----- | ------------------------------------------ |
+| `regular` | Outline | 1383  | UI chrome, navigation, default icon style  |
+| `solid`   | Filled  | 288   | Emphasis, active/selected states, badges   |
+
+All 288 solid icons also exist in the regular set. Default to `regular`; use `solid` for visual emphasis or toggled-on states.
+
+### File Paths
+
+Icons are located at:
+
+```
+assets/icons/{variant}/{icon-name}.svg
+```
+
+Examples: `assets/icons/regular/arrow-right.svg`, `assets/icons/solid/star.svg`
+
+### SVG Specifications
+
+| Property       | Regular (Outline)    | Solid (Filled)                   |
+| -------------- | -------------------- | -------------------------------- |
+| Size           | 24 x 24             | 24 x 24                         |
+| `stroke-width` | 1.5                  | 1.5                              |
+| `stroke`       | `currentColor`       | `currentColor`                   |
+| `fill`         | `none`               | `currentColor`                   |
+
+### Styling
+
+- Icons inherit text color via `currentColor` — set `color` on the parent or the SVG element to recolor.
+- Resize with `width` and `height` attributes or CSS; the 24x24 viewBox scales proportionally.
+- Adjust stroke weight on regular icons with the `stroke-width` attribute.
+- Icon names use kebab-case (e.g., `arrow-right`, `warning-circle`, `send-mail`).
+
+For categorized icon listings and usage examples, see [references/icons.md](references/icons.md).
