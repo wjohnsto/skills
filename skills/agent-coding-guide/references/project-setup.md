@@ -15,7 +15,9 @@ When starting a new app, use the following:
 - TypeScript
 - Hono
 - Zod
-- Pino + pino-pretty + pino-http
+- Pino (logging)
+    - pino-pretty
+    - pino-http
 - Handlebars
 - HTMX
 - CSS (not Tailwind)
