@@ -1,0 +1,10 @@
+{
+  "name": "skills",
+  "type": "module",
+  "private": true,
+  "workspaces": ["scripts/**"],
+  "scripts": {
+    "test": "bun test",
+    "skills:deploy": "bun run scripts/deploy/src/index.ts"
+  }
+}

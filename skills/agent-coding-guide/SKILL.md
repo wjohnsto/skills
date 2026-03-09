@@ -3,7 +3,7 @@ name: agent-coding-guide
 description: >-
     Use when implementing any feature, bug fix, or refactor — before writing
     implementation code.
-license: See LICENSE in repository root
+license: MIT
 metadata:
     author: wjohnsto
     version: '1.1'

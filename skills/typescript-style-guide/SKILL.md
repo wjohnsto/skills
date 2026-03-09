@@ -2,7 +2,7 @@
 name: typescript-style-guide
 description: >-
     Use when writing or reviewing TypeScript code.
-license: See LICENSE in repository root
+license: MIT
 metadata:
     author: redis
     version: '1.0'

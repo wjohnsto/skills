@@ -4,7 +4,7 @@ description: >-
     Use when building frontend UI components or pages. Covers brand colors,
     typography scales, spacing tokens, button styles, dark theme, and layout
     constraints.
-license: See LICENSE in repository root
+license: MIT
 metadata:
     author: wjohnsto
     version: '1.0'
