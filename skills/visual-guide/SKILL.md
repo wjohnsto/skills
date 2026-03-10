@@ -28,13 +28,43 @@ This project uses three font families, assigned to CSS custom properties.
 
 ### Font Families
 
-| Variable       | Type       | Stack                  | Weights       | Usage                                |
-| -------------- | ---------- | ---------------------- | ------------- | ------------------------------------ |
-| `--font-sans`  | Sans-serif | `system-ui, sans-serif`| 400, 500, 700 | Headings, body text, buttons, UI     |
-| `--font-serif` | Serif      | `serif`                | 400, 700      | Long-form prose, editorial content   |
-| `--font-mono`  | Monospace  | `monospace`            | 400, 700      | Code, eyebrow labels, technical text |
+| Variable        | Type       | Stack                      | Weights              | Usage                                |
+| --------------- | ---------- | -------------------------- | -------------------- | ------------------------------------ |
+| `--font-sans`   | Sans-serif | `system-ui, sans-serif`    | 400, 500, 700        | Headings, body text, buttons, UI     |
+| `--font-prose`  | Sans-serif | `'Lexend', sans-serif`     | 300, 400, 500, 700   | Long-form prose, editorial content   |
+| `--font-mono`   | Monospace  | `monospace`                | 400, 700             | Code, eyebrow labels, technical text |
 
 Default font family: `var(--font-sans)`.
+
+### Lexend Font
+
+`--font-prose` uses [Lexend](https://www.lexend.com/), a variable sans-serif typeface designed for improved reading comfort and comprehension. It is licensed under the SIL Open Font License (OFL).
+
+#### Font Files
+
+Font files are located at:
+
+```
+assets/fonts/lexend/
+```
+
+| File                              | Type     | Axis   | Use When                              |
+| --------------------------------- | -------- | ------ | ------------------------------------- |
+| `Lexend-VariableFont_wght.ttf`    | Variable | `wght` | Preferred — single file, all weights  |
+| `static/Lexend-{Weight}.ttf`      | Static   | —      | Fallback when variable fonts are unsupported |
+
+Available static weights: Thin (100), ExtraLight (200), Light (300), Regular (400), Medium (500), SemiBold (600), Bold (700), ExtraBold (800), Black (900).
+
+#### @font-face Example
+
+```css
+@font-face {
+  font-family: 'Lexend';
+  src: url('assets/fonts/lexend/Lexend-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+```
 
 ### Heading Scale
 
