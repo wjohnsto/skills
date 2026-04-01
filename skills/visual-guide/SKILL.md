@@ -2,14 +2,14 @@
 name: visual-guide
 description: >-
     Use when building frontend UI components or pages. Covers brand colors,
-    typography scales, spacing tokens, button styles, dark/light themes, and
-    layout constraints.
+    typography scales, spacing tokens, button styles, form inputs, dark theme,
+    layout constraints, and component patterns.
 license: MIT
 metadata:
     author: wjohnsto
-    version: '2.0'
+    version: '3.0'
     category: reference
-    triggers: frontend, UI, colors, typography, brand, theme, light, dark, icons, buttons
+    triggers: frontend, UI, colors, typography, brand, theme, dark, icons, buttons, forms, inputs, cards, modals, shadows, breakpoints
 ---
 
 # Visual Guide
@@ -18,9 +18,11 @@ metadata:
 
 - Choosing colors, fonts, or spacing for UI components
 - Creating new pages or layouts
-- Styling buttons, headings, or body text
-- Implementing dark or light theme
+- Styling buttons, links, form inputs, or text
+- Implementing the dark theme
 - Checking brand-correct color values or CSS variable names
+- Looking up shadow, radius, z-index, or breakpoint tokens
+- Building cards, modals, tooltips, or badges
 
 ## Typography
 
@@ -83,19 +85,19 @@ Headings use the sans font at most sizes, transitioning to the monospace font at
 
 ### Body Text Scale
 
-Body text always uses `--font-sans`.
+Body text always uses `--font-sans`. Where mobile size is not listed, it matches the desktop value. Where line height is not listed, use `normal`.
 
 | Size Token | Desktop Size | Mobile Size | Line Height |
 | ---------- | ------------ | ----------- | ----------- |
 | `3xl`      | 2rem         | 1.5rem      | 120%        |
-| `2xl`      | 1.5rem       | —           | 120%        |
-| `xl`       | 1.375rem     | —           | —           |
-| `lg`       | 1.25rem      | —           | 145%        |
-| `md`       | 1.125rem     | —           | 150%        |
+| `2xl`      | 1.5rem       | 1.5rem      | 120%        |
+| `xl`       | 1.375rem     | 1.375rem    | normal      |
+| `lg`       | 1.25rem      | 1.25rem     | 145%        |
+| `md`       | 1.125rem     | 1.125rem    | 150%        |
 | `sm`       | 1rem         | 0.875rem    | 160%        |
 | `rg`       | 0.875rem     | 0.75rem     | 150%        |
-| `xs`       | 0.75rem      | —           | 150%        |
-| `2xs`      | 0.625rem     | —           | 150%        |
+| `xs`       | 0.75rem      | 0.75rem     | 150%        |
+| `2xs`      | 0.625rem     | 0.625rem    | 150%        |
 
 ### Font Weights
 
@@ -108,11 +110,11 @@ Body text always uses `--font-sans`.
 
 ## Colors
 
-Color palettes are sourced from the [Nightfox](https://github.com/EdenEast/nightfox.nvim) theme family. The dark theme uses **CarbonFox** and the light theme uses **DayFox**.
+Color palette is sourced from the [Nightfox](https://github.com/EdenEast/nightfox.nvim) theme family, specifically **CarbonFox**.
 
 Accent color variables follow the pattern `--{color}`, `--{color}-dim`, and `--{color}-bright`.
 
-### Dark Palette (CarbonFox)
+### Palette (CarbonFox)
 
 #### Backgrounds
 
@@ -162,61 +164,7 @@ Text colors, from brightest to most muted.
 | Magenta | `#a27fd9` | `#be95ff` | `#c8a5ff` | Warnings, emphasis, tags                |
 | Teal    | `#07a19e` | `#08bdba` | `#2dc7c4` | Tertiary accent, types                  |
 
-### Light Palette (DayFox)
-
-#### Backgrounds
-
-Layered surface colors. In light theme, the base is lightest and elevation increases toward darker values.
-
-| Name | Variable | Hex       | Usage                |
-| ---- | -------- | --------- | -------------------- |
-| bg0  | `--bg0`  | `#e4dcd4` | Recessed surface     |
-| bg1  | `--bg1`  | `#f6f2ee` | Base/root background |
-| bg2  | `--bg2`  | `#dbd1dd` | Elevated surface     |
-| bg3  | `--bg3`  | `#d3c7bb` | Active/hover surface |
-| bg4  | `--bg4`  | `#aab0ad` | Highest elevation    |
-
-#### Foregrounds
-
-Text colors, from darkest to most muted.
-
-| Name | Variable | Hex       | Usage                     |
-| ---- | -------- | --------- | ------------------------- |
-| fg0  | `--fg0`  | `#302b5d` | Primary/heading text      |
-| fg1  | `--fg1`  | `#3d2b5a` | Body text                 |
-| fg2  | `--fg2`  | `#643f61` | Muted/secondary text      |
-| fg3  | `--fg3`  | `#824d5b` | Disabled/placeholder text |
-
-#### Selection
-
-| Name | Variable | Hex       | Usage                |
-| ---- | -------- | --------- | -------------------- |
-| sel0 | `--sel0` | `#e7d2be` | Selection background |
-| sel1 | `--sel1` | `#a4c1c2` | Active selection     |
-
-#### Comment
-
-| Variable    | Hex       |
-| ----------- | --------- |
-| `--comment` | `#837a72` |
-
-#### Accent Colors
-
-| Color   | Dim       | Base      | Bright    | Usage                                   |
-| ------- | --------- | --------- | --------- | --------------------------------------- |
-| Blue    | `#223d90` | `#2848a9` | `#4863b6` | Primary accent, links, focus rings      |
-| Cyan    | `#22676d` | `#287980` | `#488d93` | Info, highlights, secondary interactive |
-| Green   | `#30583c` | `#396847` | `#577f63` | Success states, confirmations           |
-| Red     | `#8c1d28` | `#a5222f` | `#b3434e` | Errors, destructive actions             |
-| Pink    | `#8b369a` | `#a440b5` | `#b25dc0` | Decorative accents, badges              |
-| Magenta | `#5e2baf` | `#6e33ce` | `#8452d5` | Warnings, emphasis, tags                |
-| Yellow  | `#924702` | `#ac5402` | `#b86e28` | Cautions, attention indicators          |
-
 ## Theming
-
-This project supports dark and light themes via `color-scheme`.
-
-### Dark Theme
 
 `color-scheme: dark`
 
@@ -232,25 +180,7 @@ This project supports dark and light themes via `color-scheme`.
 | `--border`         | `--bg3`  | `#353535`      |
 | `--stroke-divider` | `--bg4`  | `#535353`      |
 
-### Light Theme
-
-`color-scheme: light`
-
-| Semantic Token     | Maps To  | Resolved Value |
-| ------------------ | -------- | -------------- |
-| `--bg-default`     | `--bg1`  | `#f6f2ee`      |
-| `--bg-surface`     | `--bg0`  | `#e4dcd4`      |
-| `--bg-elevated`    | `--bg2`  | `#dbd1dd`      |
-| `--fg-default`     | `--fg0`  | `#302b5d`      |
-| `--fg-body`        | `--fg1`  | `#3d2b5a`      |
-| `--fg-muted`       | `--fg2`  | `#643f61`      |
-| `--fg-disabled`    | `--fg3`  | `#824d5b`      |
-| `--border`         | `--bg3`  | `#d3c7bb`      |
-| `--stroke-divider` | `--bg4`  | `#aab0ad`      |
-
 ### Semantic Colors
-
-#### Dark
 
 | Token       | Maps To      | Resolved Value | Usage                    |
 | ----------- | ------------ | -------------- | ------------------------ |
@@ -260,56 +190,57 @@ This project supports dark and light themes via `color-scheme`.
 | `--success` | `--green`    | `#25be6a`      | Confirmations, positive  |
 | `--info`    | `--cyan`     | `#33b1ff`      | Informational highlights |
 
-#### Light
+### CSS Custom Properties Scaffold
 
-| Token       | Maps To      | Resolved Value | Usage                    |
-| ----------- | ------------ | -------------- | ------------------------ |
-| `--accent`  | `--blue`     | `#2848a9`      | Primary interactive      |
-| `--error`   | `--red`      | `#a5222f`      | Errors, destructive      |
-| `--warning` | `--yellow`   | `#ac5402`      | Warnings, cautions       |
-| `--success` | `--green`    | `#396847`      | Confirmations, positive  |
-| `--info`    | `--cyan`     | `#287980`      | Informational highlights |
+For a ready-to-paste `:root` block that wires up all tokens, see [references/theme-setup.md](references/theme-setup.md).
 
 ## Buttons
 
-### Primary Button (Dark Theme)
+### Primary Button
 
-| State   | Background       | Border           | Text Color |
-| ------- | ---------------- | ---------------- | ---------- |
-| Default | `--blue`         | `--blue-bright`  | `--bg0`    |
-| Hover   | `--blue-bright`  | `--blue-bright`  | `--bg0`    |
-| Active  | `--blue-dim`     | `--blue`         | `--bg0`    |
+| State    | Background       | Border           | Text Color |
+| -------- | ---------------- | ---------------- | ---------- |
+| Default  | `--blue`         | `--blue-bright`  | `--bg0`    |
+| Hover    | `--blue-bright`  | `--blue-bright`  | `--bg0`    |
+| Active   | `--blue-dim`     | `--blue`         | `--bg0`    |
+| Disabled | `--bg2`          | `--bg3`          | `--fg3`    |
 
-### Secondary Button (Dark Theme)
+### Secondary Button
 
-| State   | Background | Border   | Text Color |
-| ------- | ---------- | -------- | ---------- |
-| Default | `--bg2`    | `--bg4`  | `--fg0`    |
-| Hover   | `--bg3`    | `--sel1` | `--fg0`    |
-| Active  | `--bg3`    | `--sel1` | `--fg0`    |
-
-### Primary Button (Light Theme)
-
-| State   | Background       | Border           | Text Color |
-| ------- | ---------------- | ---------------- | ---------- |
-| Default | `--blue`         | `--blue-dim`     | `--bg1`    |
-| Hover   | `--blue-dim`     | `--blue-dim`     | `--bg1`    |
-| Active  | `--blue`         | `--blue`         | `--bg1`    |
-
-### Secondary Button (Light Theme)
-
-| State   | Background | Border   | Text Color |
-| ------- | ---------- | -------- | ---------- |
-| Default | `--bg0`    | `--bg4`  | `--fg0`    |
-| Hover   | `--bg3`    | `--sel1` | `--fg0`    |
-| Active  | `--bg3`    | `--sel1` | `--fg0`    |
+| State    | Background | Border   | Text Color |
+| -------- | ---------- | -------- | ---------- |
+| Default  | `--bg2`    | `--bg4`  | `--fg0`    |
+| Hover    | `--bg3`    | `--sel1` | `--fg0`    |
+| Active   | `--bg3`    | `--sel1` | `--fg0`    |
+| Disabled | `--bg1`    | `--bg3`  | `--fg3`    |
 
 ### Button Styling
 
 - Font: `--font-sans`, 0.875rem, weight 500
 - Border: 1px solid
-- Variants: `pill` (border-radius: 200px), `rounded` (border-radius: 5px), `square` (border-radius: 0)
+- Variants: `rounded` (border-radius: 5px), `square` (border-radius: 0)
 - Size tokens: `xs` (0.25rem 0.5rem), `sm` (0.5rem 0.75rem), `md` (0.625rem 1.5rem), `lg` (0.9375rem 2.25rem)
+- Disabled: `opacity: 0.5; cursor: not-allowed; pointer-events: none`
+
+### Focus States
+
+All interactive elements use the same focus ring:
+
+- `outline: 2px solid var(--accent)`
+- `outline-offset: 2px`
+- Apply on `:focus-visible` only (not `:focus`) to avoid showing rings on mouse clicks
+
+## Links
+
+| State          | Color            | Decoration    |
+| -------------- | ---------------- | ------------- |
+| Default        | `--accent`       | none          |
+| Hover          | `--blue-bright`  | underline     |
+| Active         | `--blue-dim`     | underline     |
+| Visited        | `--magenta`      | none          |
+| Focus-visible  | `--accent`       | focus ring    |
+
+Focus ring matches the button focus style: `outline: 2px solid var(--accent); outline-offset: 2px`.
 
 ## Spacing Tokens
 
@@ -322,13 +253,79 @@ This project supports dark and light themes via `color-scheme`.
 | `lg`  | 4.5rem   | 3.875rem |
 | `xl`  | 6rem     | 3.75rem  |
 
+## Shadows
+
+Use shadows sparingly. On dark backgrounds, shadows are less visible — rely on background elevation changes for primary hierarchy and use shadows as supplemental depth cues.
+
+| Token | Value                                            | Usage                   |
+| ----- | ------------------------------------------------ | ----------------------- |
+| `sm`  | `0 1px 2px rgba(0, 0, 0, 0.15)`                 | Subtle lift (tooltips)  |
+| `md`  | `0 4px 12px rgba(0, 0, 0, 0.2)`                 | Cards, dropdowns        |
+| `lg`  | `0 8px 30px rgba(0, 0, 0, 0.3)`                 | Modals, dialogs         |
+
+## Border Radius
+
+| Token  | Value   | Usage                            |
+| ------ | ------- | -------------------------------- |
+| `none` | 0       | Sharp edges, square buttons      |
+| `sm`   | 4px     | Subtle rounding, tags, badges    |
+| `md`   | 8px     | Cards, inputs, containers        |
+| `lg`   | 16px    | Large panels, modals             |
+| `full` | 9999px  | Pills, avatars, circular buttons |
+
+## Z-Index
+
+Layered from lowest to highest. Never use arbitrary z-index values outside this scale.
+
+| Token      | Value | Usage                        |
+| ---------- | ----- | ---------------------------- |
+| `base`     | 0     | Default stacking context     |
+| `dropdown` | 100   | Dropdowns, select menus      |
+| `sticky`   | 200   | Sticky headers, navbars      |
+| `overlay`  | 300   | Backdrop overlays            |
+| `modal`    | 400   | Modals, dialogs              |
+| `popover`  | 500   | Popovers, floating elements  |
+| `toast`    | 600   | Toast notifications, alerts  |
+
+## Breakpoints
+
+Mobile-first: base styles target the smallest viewport, then layer on overrides at each breakpoint using `min-width`.
+
+| Token | Width   | Usage                              |
+| ----- | ------- | ---------------------------------- |
+| `sm`  | 640px   | Large phones, landscape            |
+| `md`  | 768px   | Tablets                            |
+| `lg`  | 1024px  | Small desktops, landscape tablets  |
+| `xl`  | 1260px  | Desktop — wider container padding  |
+| `2xl` | 1600px  | Large desktop — max container      |
+
+## Transitions
+
+| Token    | Duration | Usage                                 |
+| -------- | -------- | ------------------------------------- |
+| `fast`   | 100ms    | Micro-interactions (hover highlights) |
+| `normal` | 200ms    | Standard UI (buttons, links, inputs)  |
+| `slow`   | 350ms    | Emphasis (modals, panels, overlays)   |
+
+Default easing: `ease-in-out`. Always respect the user's motion preference:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+```
+
 ## Layout
 
-- Max container width: 1390px (1280px below 1600px viewport)
-- Container padding: 24px (80px between 1260px–1600px viewport)
+- Max container width: 1390px (1280px below `2xl` breakpoint)
+- Container padding: 24px (80px between `xl` and `2xl` breakpoints)
 - Base font size: 16px
 - Text rendering: `optimizeLegibility` with `-webkit-font-smoothing: antialiased`
-- Color scheme: `dark` (default), `light`
+- Color scheme: `dark`
+- Approach: mobile-first — write base styles for small screens, then use `@media (min-width)` to add overrides at each breakpoint (see Breakpoints above)
 
 ## Icons
 
@@ -370,3 +367,5 @@ Examples: `assets/icons/regular/arrow-right.svg`, `assets/icons/solid/star.svg`
 - Icon names use kebab-case (e.g., `arrow-right`, `warning-circle`, `send-mail`).
 
 For categorized icon listings and usage examples, see [references/icons.md](references/icons.md).
+
+For component-level styling (forms, cards, modals, tooltips, badges), see [references/components.md](references/components.md).
