@@ -111,6 +111,7 @@ Note: Directories starting with `_` (like `_template`) are skipped during valida
 | Skill                    | Description                                                                                                                                                   |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `agent-coding-guide`     | Use when implementing any feature, bug fix, or refactor — before writing implementation code.                                                                 |
+| `go-style-guide`         | Use when writing or reviewing Go code using Google's Go style guidance.                                                                                       |
 | `visual-guide`           | Use when building frontend UI components or pages. Covers brand colors, typography scales, spacing tokens, button styles, dark theme, and layout constraints. |
 | `typescript-style-guide` | Use when writing or reviewing TypeScript code.                                                                                                                |
 
