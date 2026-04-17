@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for named exports, API surface minimization, and module organization
-    in TypeScript.
+  Rules for named exports, API surface minimization, and module organization
+  in TypeScript.
 metadata:
-    tags: [exports, named exports, API surface, modules]
----
-
----
-
-description: >-
-Rules for named exports, API surface minimization, and module
-organization in TypeScript.
-metadata:
-tags: [exports, named exports, API surface, modules]
-
+  tags: [exports, named exports, API surface, modules]
 ---
 
 # Exports

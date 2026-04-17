@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for control flow statements, switch cases, equality checks, iteration,
-    and spread operators in TypeScript.
+  Rules for control flow statements, switch cases, equality checks, iteration,
+  and spread operators in TypeScript.
 metadata:
-    tags: [control flow, switch, for-of, equality, iteration]
----
-
----
-
-description: >-
-Rules for control flow statements, switch cases, equality checks,
-iteration, and spread operators in TypeScript.
-metadata:
-tags: [control flow, switch, equality, for-of, iteration]
-
+  tags: [control flow, switch, for-of, equality, iteration]
 ---
 
 # Control Flow

@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for function declarations, arrow functions, expression bodies, and
-    proper use of 'this' in TypeScript.
+  Rules for function declarations, arrow functions, expression bodies, and
+  proper use of 'this' in TypeScript.
 metadata:
-    tags: [functions, arrow functions, declarations, callbacks]
----
-
----
-
-description: >-
-Rules for function declarations, arrow functions, expression bodies,
-and use of this in TypeScript.
-metadata:
-tags: [functions, arrow functions, declarations, callbacks]
-
+  tags: [functions, arrow functions, declarations, callbacks]
 ---
 
 # Functions

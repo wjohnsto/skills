@@ -1,19 +1,9 @@
 ---
 description: >-
-    Naming rules for TypeScript identifiers including classes, variables,
-    functions, and constants.
+  Naming rules for TypeScript identifiers including classes, variables,
+  functions, and constants.
 metadata:
-    tags: [naming, identifiers, camelCase, conventions]
----
-
----
-
-description: >-
-Naming rules for TypeScript identifiers including classes, variables,
-functions, and constants.
-metadata:
-tags: [naming, identifiers, camelCase, conventions]
-
+  tags: [naming, identifiers, camelCase, conventions]
 ---
 
 # Identifiers

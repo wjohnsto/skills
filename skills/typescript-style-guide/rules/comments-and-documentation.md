@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for JSDoc comments, line comments, and documentation practices in
-    TypeScript code.
+  Rules for JSDoc comments, line comments, and documentation practices in
+  TypeScript code.
 metadata:
-    tags: [comments, documentation, JSDoc, encoding]
----
-
----
-
-description: >-
-Rules for JSDoc, line comments, file encoding, and documentation of
-TypeScript exports.
-metadata:
-tags: [comments, documentation, JSDoc, encoding]
-
+  tags: [comments, documentation, JSDoc, encoding]
 ---
 
 # Comments & Documentation

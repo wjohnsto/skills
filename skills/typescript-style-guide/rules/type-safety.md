@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for type assertions, ts-ignore usage, runtime checks, and safe type
-    narrowing in TypeScript.
+  Rules for type assertions, ts-ignore usage, runtime checks, and safe type
+  narrowing in TypeScript.
 metadata:
-    tags: [type safety, assertions, ts-ignore, type narrowing, instanceof]
----
-
----
-
-description: >-
-Rules for type assertions, ts-ignore, runtime checks, and safe
-property access in TypeScript.
-metadata:
-tags: [type safety, assertions, ts-ignore, runtime checks]
-
+  tags: [type safety, assertions, ts-ignore, type narrowing, instanceof]
 ---
 
 # Type Safety

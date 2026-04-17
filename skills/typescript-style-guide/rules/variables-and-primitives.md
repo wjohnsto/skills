@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for variable declarations, const/let usage, error handling, enums,
-    and primitive type usage in TypeScript.
+  Rules for variable declarations, const/let usage, error handling, enums,
+  and primitive type usage in TypeScript.
 metadata:
-    tags: [variables, const, let, enums, primitives, errors]
----
-
----
-
-description: >-
-Rules for variable declarations, const/let usage, error construction,
-enums, and primitive type handling in TypeScript.
-metadata:
-tags: [variables, const, let, enum, primitives, errors]
-
+  tags: [variables, const, let, enums, primitives, errors]
 ---
 
 # Variables & Primitives

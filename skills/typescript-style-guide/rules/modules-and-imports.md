@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for ES6 module imports, import paths, namespace usage, and import
-    type declarations in TypeScript.
+  Rules for ES6 module imports, import paths, namespace usage, and import
+  type declarations in TypeScript.
 metadata:
-    tags: [modules, imports, namespaces, import type, ES6]
----
-
----
-
-description: >-
-Rules for ES6 import paths, module vs destructuring imports, and
-avoiding namespace and require in TypeScript.
-metadata:
-tags: [modules, imports, ES6, namespace, require]
-
+  tags: [modules, imports, namespaces, import type, ES6]
 ---
 
 # Modules & Imports

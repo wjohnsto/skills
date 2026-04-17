@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for TypeScript class declarations including visibility, constructors,
-    properties, and member ordering.
+  Rules for TypeScript class declarations including visibility, constructors,
+  properties, and member ordering.
 metadata:
-    tags: [classes, visibility, constructors, properties, readonly]
----
-
----
-
-description: >-
-Rules for TypeScript class visibility, constructors, properties, and
-member declarations.
-metadata:
-tags: [classes, visibility, constructors, readonly, properties]
-
+  tags: [classes, visibility, constructors, properties, readonly]
 ---
 
 # Classes

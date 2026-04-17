@@ -1,19 +1,9 @@
 ---
 description: >-
-    Rules for type inference, annotations, interfaces vs type aliases, generics,
-    and avoiding any in TypeScript.
+  Rules for type inference, annotations, interfaces vs type aliases, generics,
+  and avoiding any in TypeScript.
 metadata:
-    tags: [type system, inference, interfaces, generics, any, unknown]
----
-
----
-
-description: >-
-Rules for type inference, annotations, interfaces vs type aliases,
-generics, and avoiding any in TypeScript.
-metadata:
-tags: [type system, inference, interfaces, generics, any, unknown]
-
+  tags: [type system, inference, interfaces, generics, any, unknown]
 ---
 
 # Type System

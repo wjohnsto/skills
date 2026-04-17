@@ -8,6 +8,7 @@ import {
   validateMetadataTriggers,
   validateMetadataCategory,
   validateLineCount,
+  validateNoDuplicateFrontmatter,
   validateNoForceLoading,
   validateSupportingFiles,
   type SupportingFileResult,
@@ -291,6 +292,77 @@ describe("Writing Skills Validator Unit Tests", () => {
     test("accepts plain email-like @ signs", () => {
       const content = "Contact user@example.com for help.";
       expect(validateNoForceLoading(content)).toHaveLength(0);
+    });
+  });
+
+  describe("validateNoDuplicateFrontmatter", () => {
+    test("accepts a file with a single frontmatter block", () => {
+      const content = [
+        "---",
+        "description: A valid file.",
+        "---",
+        "",
+        "# Heading",
+        "",
+        "Body text.",
+      ].join("\n");
+      expect(validateNoDuplicateFrontmatter(content)).toHaveLength(0);
+    });
+
+    test("accepts a file with no frontmatter", () => {
+      const content = "# Heading\n\nBody text.\n";
+      expect(validateNoDuplicateFrontmatter(content)).toHaveLength(0);
+    });
+
+    test("rejects a file with two stacked frontmatter blocks", () => {
+      const content = [
+        "---",
+        "description: First block.",
+        "---",
+        "",
+        "---",
+        "",
+        "description: Second block.",
+        "",
+        "---",
+        "",
+        "# Heading",
+      ].join("\n");
+      const errors = validateNoDuplicateFrontmatter(content);
+      expect(errors.length).toBeGreaterThan(0);
+      expect(errors[0].message).toContain("duplicate frontmatter");
+    });
+
+    test("rejects a file with two stacked frontmatter blocks and no blank line between", () => {
+      const content = [
+        "---",
+        "description: First block.",
+        "---",
+        "---",
+        "description: Second block.",
+        "---",
+        "",
+        "# Heading",
+      ].join("\n");
+      const errors = validateNoDuplicateFrontmatter(content);
+      expect(errors.length).toBeGreaterThan(0);
+    });
+
+    test("accepts a horizontal rule `---` later in the body", () => {
+      const content = [
+        "---",
+        "description: Valid.",
+        "---",
+        "",
+        "# Heading",
+        "",
+        "Some intro text.",
+        "",
+        "---",
+        "",
+        "More text after a horizontal rule.",
+      ].join("\n");
+      expect(validateNoDuplicateFrontmatter(content)).toHaveLength(0);
     });
   });
 

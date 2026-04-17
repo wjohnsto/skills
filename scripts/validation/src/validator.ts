@@ -283,6 +283,41 @@ export function validateLineCount(content: string): ValidationError[] {
   return errors;
 }
 
+export function validateNoDuplicateFrontmatter(content: string): ValidationError[] {
+  const errors: ValidationError[] = [];
+  const lines = content.split("\n");
+
+  if (lines.length === 0 || lines[0] !== "---") {
+    return errors;
+  }
+
+  let closeIdx = -1;
+  for (let i = 1; i < lines.length; i++) {
+    if (lines[i] === "---") {
+      closeIdx = i;
+      break;
+    }
+  }
+
+  if (closeIdx === -1) {
+    return errors;
+  }
+
+  for (let i = closeIdx + 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.trim() === "") continue;
+    if (line === "---") {
+      errors.push({
+        field: "frontmatter",
+        message: `duplicate frontmatter block detected at line ${i + 1}; a file may only have one "---" fenced block at the top`,
+      });
+    }
+    break;
+  }
+
+  return errors;
+}
+
 export function validateNoForceLoading(content: string): ValidationError[] {
   const errors: ValidationError[] = [];
   const lines = content.split("\n");
@@ -330,6 +365,14 @@ export async function validateSupportingFiles(
     const fileErrors: ValidationError[] = [];
     const content = await readFile(filePath, "utf-8");
     const relPath = relative(skillPath, filePath);
+
+    const duplicateErrors = validateNoDuplicateFrontmatter(content);
+    for (const err of duplicateErrors) {
+      fileErrors.push({
+        field: `supportingFile:${relPath}`,
+        message: `${relPath} ${err.message}`,
+      });
+    }
 
     let parsed: matter.GrayMatterFile<string>;
     try {
