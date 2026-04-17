@@ -218,7 +218,7 @@ For a ready-to-paste `:root` block that wires up all tokens, see [references/the
 
 - Font: `--font-sans`, 0.875rem, weight 500
 - Border: 1px solid
-- Variants: `rounded` (border-radius: 5px), `square` (border-radius: 0)
+- Border radius: 5px (`--radius-md`) — all buttons use the same radius
 - Size tokens: `xs` (0.25rem 0.5rem), `sm` (0.5rem 0.75rem), `md` (0.625rem 1.5rem), `lg` (0.9375rem 2.25rem)
 - Disabled: `opacity: 0.5; cursor: not-allowed; pointer-events: none`
 
@@ -265,13 +265,13 @@ Use shadows sparingly. On dark backgrounds, shadows are less visible — rely on
 
 ## Border Radius
 
-| Token  | Value   | Usage                            |
-| ------ | ------- | -------------------------------- |
-| `none` | 0       | Sharp edges, square buttons      |
-| `sm`   | 4px     | Subtle rounding, tags, badges    |
-| `md`   | 8px     | Cards, inputs, containers        |
-| `lg`   | 16px    | Large panels, modals             |
-| `full` | 9999px  | Pills, avatars, circular buttons |
+Only three border-radius values are allowed. Never use any other value (no `0`, no pill `9999px`, no arbitrary radii).
+
+| Token | Value  | Usage                                        |
+| ----- | ------ | -------------------------------------------- |
+| `sm`  | 2.5px  | Tight controls: checkboxes, tooltips, badges |
+| `md`  | 5px    | Default UI: buttons, inputs, cards, selects  |
+| `lg`  | 10px   | Large surfaces: modals, dialogs, panels      |
 
 ## Z-Index
 

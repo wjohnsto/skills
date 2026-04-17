@@ -22,7 +22,7 @@ Token-based styling for common UI primitives. All components use semantic tokens
 
 - Font: `--font-sans`, 1rem, weight 400
 - Border: 1px solid
-- Border radius: `--radius-md` (8px)
+- Border radius: `--radius-md` (5px)
 - Padding: 0.625rem 0.75rem
 - Focus: adds `outline: 2px solid var(--accent); outline-offset: 2px`
 - Error: add error message below in `--error` color at body `xs` size
@@ -66,7 +66,7 @@ Native `<select>` styling with custom appearance.
 
 - Size: 1.125rem x 1.125rem
 - Border: 1.5px solid
-- Checkbox border radius: `--radius-sm` (4px); radio: `--radius-full`
+- Checkbox border radius: `--radius-sm` (2.5px); radio: `--radius-lg` (10px)
 - Label: `--font-sans`, body `sm` size, `--fg1`
 - Gap between control and label: 0.5rem
 - Use `check` icon (Iconoir) for checkbox mark; filled circle for radio
@@ -80,8 +80,8 @@ Native `<select>` styling with custom appearance.
 
 ### Toggle Styling
 
-- Track: 2.5rem x 1.375rem, `--radius-full`
-- Thumb: 1rem x 1rem circle, `--radius-full`
+- Track: 2.5rem x 1.375rem, `--radius-lg` (10px)
+- Thumb: 1rem x 1rem, `--radius-lg` (10px)
 - Transition: `--transition-fast` for slide
 - Disabled: same opacity/cursor rule as buttons
 
@@ -99,7 +99,7 @@ Native `<select>` styling with custom appearance.
 ### Card Styling
 
 - Border: 1px solid
-- Border radius: `--radius-md` (8px)
+- Border radius: `--radius-md` (5px)
 - Padding: spacing `sm` (1.5rem)
 - Use heading `sm` for card titles, body `rg` for card content
 
@@ -117,7 +117,7 @@ Native `<select>` styling with custom appearance.
 ### Modal Styling
 
 - Max width: 32rem (small), 48rem (medium), 64rem (large)
-- Border radius: `--radius-lg` (16px)
+- Border radius: `--radius-lg` (10px)
 - Padding: spacing `md` (2.5rem)
 - Center vertically and horizontally with flexbox or `position: fixed; inset: 0; margin: auto`
 - Transition: `--transition-slow` for open/close
@@ -138,7 +138,7 @@ Native `<select>` styling with custom appearance.
 - Font: `--font-sans`, body `xs` size, weight 500
 - Max width: 16rem
 - Padding: 0.375rem 0.625rem
-- Border radius: `--radius-sm` (4px)
+- Border radius: `--radius-sm` (2.5px)
 - Arrow: 6px CSS triangle using the same background color
 - Delay: 200ms before showing
 - Transition: `--transition-fast` for fade in/out
@@ -159,4 +159,4 @@ Native `<select>` styling with custom appearance.
 - Letter spacing: 0.5px
 - Padding: 0.125rem 0.5rem
 - Border: 1px solid
-- Border radius: `--radius-full` (pill shape)
+- Border radius: `--radius-lg` (10px)

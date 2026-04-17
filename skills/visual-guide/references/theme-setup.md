@@ -32,11 +32,9 @@ Set `color-scheme: dark` on `:root` and define all tokens in one place.
   --success: #25be6a;
   --info: #33b1ff;
 
-  --radius-none: 0;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
+  --radius-sm: 2.5px;
+  --radius-md: 5px;
+  --radius-lg: 10px;
 
   --z-base: 0;
   --z-dropdown: 100;
