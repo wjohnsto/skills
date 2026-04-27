@@ -2,27 +2,28 @@
 
 A collection of agent skills for AI coding assistants working on projects. These skills follow the [AgentSkills specification](https://agentskills.io/specification) and provide guidance on visual standards, coding conventions, and recommended technologies.
 
-## What Are Agent Skills?
+## What are agent skills?
 
 Agent skills are structured knowledge documents that AI assistants (like Cursor, Claude Code, or similar tools) can reference when working on your projects. Each skill contains instructions, guidelines, and examples that help agents produce consistent, high-quality output aligned with standards.
 
-## Repository Structure
+## Repository structure
 
 ```
-internal-agent-skills/
+skills/
 ├── skills/                      # All skills live here
-│   ├── visual-guide/            # Example: Visual guidelines skill
-│   │   ├── SKILL.md             # Main skill file (required)
-│   │   ├── references/          # Additional documentation
-│   │   ├── assets/              # Static resources (images, templates)
-│   │   └── scripts/             # Executable scripts
-│   └── ...
+│   ├── agent-coding-guide/      # Coding workflow and project setup guidance
+│   ├── go-style-guide/          # Go style rules
+│   ├── typescript-style-guide/  # TypeScript style rules
+│   ├── visual-guide/            # UI, theme, and component guidance
+│   └── writing-guide/           # Writing and docs guidance
 └── scripts/                     # Repository utilities (Bun project)
     ├── __tests__/               # Skill validation tests
     └── src/                     # Validation logic
 ```
 
-## Using Skills
+Each skill directory includes a required `SKILL.md`. Some skills also include supporting `references/`, `rules/`, `assets/`, or `scripts/` directories.
+
+## Using skills
 
 Add skills to your project by copying relevant skill directories into your project's `.agents/skills/` directory.
 
@@ -34,7 +35,7 @@ Either copy the relevant skill directories into your project's `.cursor/skills/`
 ln -s ../.agents/skills .cursor/skills
 ```
 
-### General Usage
+### General usage
 
 Most AI assistants that support the AgentSkills spec will:
 1. Load skill metadata (`name` and `description`) at startup
@@ -42,7 +43,7 @@ Most AI assistants that support the AgentSkills spec will:
 3. Load full skill instructions when activated
 4. Reference additional files (`references/`, `scripts/`, `assets/`) as needed
 
-## Adding a New Skill
+## Adding a new skill
 
 1. Create a new directory under `skills/` with a lowercase, hyphenated name:
    ```bash
@@ -60,7 +61,7 @@ Most AI assistants that support the AgentSkills spec will:
 3. Add your skill instructions in the markdown body below the frontmatter.
 
 4. Optionally add supporting directories:
-   - `references/` - Additional documentation files
+   - `references/` - Additional docs files
    - `assets/` - Static resources (images, data files, templates)
    - `scripts/` - Executable scripts the agent can run
 
@@ -69,7 +70,7 @@ Most AI assistants that support the AgentSkills spec will:
    bun test
    ```
 
-### Skill Naming Rules
+### Skill naming rules
 
 - Lowercase letters, numbers, and hyphens only
 - Must not start or end with a hyphen
@@ -77,7 +78,7 @@ Most AI assistants that support the AgentSkills spec will:
 - Maximum 64 characters
 - Directory name must match the `name` field in frontmatter
 
-### Best Practices
+### Best practices
 
 - Keep `SKILL.md` under 500 lines; move detailed content to `references/`
 - Write descriptions that help agents identify when to use the skill
@@ -106,14 +107,15 @@ The tests validate:
 
 Note: Directories starting with `_` (like `_template`) are skipped during validation.
 
-## Available Skills
+## Available skills
 
-| Skill                    | Description                                                                                                                                                   |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `agent-coding-guide`     | Use when implementing any feature, bug fix, or refactor — before writing implementation code.                                                                 |
-| `go-style-guide`         | Use when writing or reviewing Go code using Google's Go style guidance.                                                                                       |
-| `visual-guide`           | Use when building frontend UI components or pages. Covers brand colors, typography scales, spacing tokens, button styles, dark theme, and layout constraints. |
-| `typescript-style-guide` | Use when writing or reviewing TypeScript code.                                                                                                                |
+| Skill | Category | Use when | Covers |
+| --- | --- | --- | --- |
+| `agent-coding-guide` | Discipline | Implementing a feature, bug fix, or refactor before writing implementation code | Understand-plan-test-verify workflow, quality gates, TDD, validation, and project setup guidance |
+| `go-style-guide` | Discipline | Writing, reviewing, refactoring, or resolving style questions in Go code | Google's Go style guidance for readability, naming, formatting, packages, comments, errors, interfaces, and testing |
+| `typescript-style-guide` | Discipline | Writing, reviewing, refactoring, or setting up TypeScript code | Identifier naming, comments, classes, functions, variables, control flow, type safety, imports, exports, and type system rules |
+| `visual-guide` | Reference | Building frontend UI components or pages | Brand colors, typography, spacing, buttons, forms, dark theme, layout constraints, component patterns, icons, and design tokens |
+| `writing-guide` | Discipline | Writing or reviewing docs, READMEs, tutorials, blog posts, or other content | Voice, concision, active voice, abbreviations, punctuation, sentence case, CTAs, and common writing red flags |
 
 ## License
 

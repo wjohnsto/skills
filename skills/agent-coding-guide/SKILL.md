@@ -1,14 +1,14 @@
 ---
 name: agent-coding-guide
 description: >-
-    Use when implementing any feature, bug fix, or refactor — before writing
-    implementation code.
+  Use when implementing any feature, bug fix, or refactor — before writing
+  implementation code.
 license: MIT
 metadata:
-    author: wjohnsto
-    version: '1.1'
-    category: discipline
-    triggers: code change, new feature, bug fix, refactor, TDD, tests
+  author: wjohnsto
+  version: "1.1"
+  category: discipline
+  triggers: code change, new feature, bug fix, refactor, TDD, tests
 ---
 
 # Agent Coding Guide
@@ -112,7 +112,7 @@ Continue the red/green cycle for each piece of behavior in your plan.
 | "I'll add tests after"                                  | Tests that pass immediately prove nothing about intent. Tests-first define _what should happen_; tests-after confirm _what already happened_. |
 | "The task is small, no plan needed"                     | Small tasks still touch multiple files. A one-line plan takes 10 seconds and prevents wasted work.                                            |
 | "I already know what to change"                         | Reading the file first catches stale assumptions. ALWAYS read before editing.                                                                 |
-| "Type check and lint can wait until the end"             | Pre-existing failures hide regressions. Establish a clean quality baseline before changing code.                                               |
+| "Type check and lint can wait until the end"            | Pre-existing failures hide regressions. Establish a clean quality baseline before changing code.                                              |
 | "Formatting is cosmetic"                                | Consistent formatting keeps diffs reviewable and prevents style churn from leaking into later work.                                           |
 | "I'll just refactor this unrelated code while I'm here" | Out-of-scope changes introduce risk. Only touch what the task requires.                                                                       |
 | "The user seems in a hurry"                             | Skipping steps costs more time when bugs surface later. The process IS the shortcut.                                                          |
