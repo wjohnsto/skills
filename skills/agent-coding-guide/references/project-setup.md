@@ -34,6 +34,7 @@ Every app should have the following scripts in the package.json:
 - `lint` - lint the files
 - `lint:fix` - lint the files and apply automatic fixes
 - `format` - run prettier on all the files
+- `typecheck` - check the typings but don't emit the compiled file output
 - `test` - run all tests
 
 ### Prettier config
