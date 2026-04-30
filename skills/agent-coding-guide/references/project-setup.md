@@ -22,6 +22,7 @@ When starting a new app, use the following:
 - HTMX
 - CSS (not Tailwind)
 - Docker
+- Eslint
 - Prettier
 - SQLite
 
@@ -30,6 +31,8 @@ Every app should have the following scripts in the package.json:
 - `dev` - run a dev server and watch for changes
 - `build` - build for production
 - `start` - start a production server
+- `lint` - lint the files
+- `lint:fix` - lint the files and apply automatic fixes
 - `format` - run prettier on all the files
 - `test` - run all tests
 
