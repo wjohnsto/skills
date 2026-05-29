@@ -29,14 +29,27 @@ Follow this workflow for every coding prompt. Do not skip steps.
 
 ## Phase 2: Quality Gates
 
-Before planning implementation work, identify the project's available validation commands from package scripts, task runners, Makefiles, language tooling, or project docs.
+Before planning implementation work, identify the project's available validation commands. Look for these files in order of precedence:
+
+- **Makefile**: If it has targets for the quality gates, prefer this file.
+- **package.json**: If no `Makefile` quality gates exist, and there are quality
+gate scripts, use this file.
+- **scripts/**: If there are quality gate scripts and no `Makefile` or
+`package.json`, use the `scripts/`
+- **project docs**: If none of the above exist, look at the project docs to
+detemine quality gates
+- **language tooling**: If none of the above exists, look at the language used
+in the project and detemine the quality gates you can use.
 
 Run these checks in order if they exist:
 
-1. **Type check** — Run the project's type checker. If it fails, stop and report the pre-existing errors to the user before making changes.
+1. **Check** — Run the project's checker (e.g. `make check`, `make typecheck`, `pnpm check`, etc.). If it fails, stop and report the pre-existing errors to the user before making changes.
 2. **Lint** — Run the project's linter. If it fails, stop and report the pre-existing errors to the user before making changes.
 
 Do not silently fix pre-existing type or lint failures unless the user asks you to. The starting point must be clean before feature, bug fix, or refactor work begins.
+
+If you identify any other quality gates, run those as well before starting and
+make sure the starting point is clean.
 
 ## Phase 3: Plan
 
