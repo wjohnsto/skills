@@ -1,6 +1,8 @@
-import { describe, test, expect, beforeAll } from "bun:test";
-import { join, basename } from "node:path";
-import { readFile } from "node:fs/promises";
+import { describe, test, expect, beforeAll } from "vitest";
+import { join, basename, dirname } from "node:path";
+import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import {
   discoverSkills,
@@ -14,7 +16,8 @@ import {
   type SupportingFileResult,
 } from "../src/validator";
 
-const SKILLS_DIR = join(import.meta.dir, "../../../skills");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const SKILLS_DIR = join(__dirname, "../../../skills");
 
 interface ParsedSkill {
   name: string;
@@ -367,9 +370,6 @@ describe("Writing Skills Validator Unit Tests", () => {
   });
 
   describe("validateSupportingFiles", () => {
-    const { mkdtemp, mkdir, writeFile, rm } = require("node:fs/promises");
-    const { tmpdir } = require("node:os");
-
     async function withTempSkill(
       files: Record<string, string>,
       fn: (dir: string) => Promise<void>

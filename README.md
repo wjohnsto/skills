@@ -16,7 +16,7 @@ skills/
 │   ├── typescript-style-guide/  # TypeScript style rules
 │   ├── visual-guide/            # UI, theme, and component guidance
 │   └── writing-guide/           # Writing and docs guidance
-└── scripts/                     # Repository utilities (Bun project)
+└── scripts/                     # Repository utilities (pnpm project)
     ├── __tests__/               # Skill validation tests
     └── src/                     # Validation logic
 ```
@@ -67,7 +67,7 @@ Most AI assistants that support the AgentSkills spec will:
 
 5. Validate your skill:
    ```bash
-   bun test
+   pnpm test
    ```
 
 ### Skill naming rules
@@ -87,14 +87,14 @@ Most AI assistants that support the AgentSkills spec will:
 
 ## Validation
 
-Skills are validated using Bun tests that check compliance with the [AgentSkills specification](https://agentskills.io/specification).
+Skills are validated using Vitest tests that check compliance with the [AgentSkills specification](https://agentskills.io/specification).
 
 ```bash
 # Install dependencies (first time only)
-bun install
+pnpm install
 
 # Run validation tests
-bun test
+pnpm test
 ```
 
 The tests validate:

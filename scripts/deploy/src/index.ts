@@ -1,5 +1,6 @@
 import { readFile, writeFile, appendFile, access } from "node:fs/promises";
-import { join, resolve, relative, dirname } from "node:path";
+import { resolve, relative, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { checkbox, input, confirm } from "@inquirer/prompts";
 import { findGitRepos } from "./find-repos";
 import {
@@ -8,7 +9,8 @@ import {
   copySkillToRepo,
 } from "./copy-skills";
 
-const PROJECT_ROOT = resolve(dirname(import.meta.dir), "..", "..");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const PROJECT_ROOT = resolve(dirname(__dirname), "..", "..");
 const SKILLS_DIR = resolve(PROJECT_ROOT, "skills");
 const ENV_FILE = resolve(PROJECT_ROOT, ".env");
 

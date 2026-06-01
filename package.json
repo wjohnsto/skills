@@ -2,9 +2,15 @@
   "name": "skills",
   "type": "module",
   "private": true,
-  "workspaces": ["scripts/**"],
+  "packageManager": "pnpm@11.1.2",
   "scripts": {
-    "test": "bun test",
-    "skills:deploy": "bun run scripts/deploy/src/index.ts"
+    "test": "vitest run",
+    "skills:deploy": "pnpm --filter deploy start"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
   }
 }

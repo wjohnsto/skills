@@ -1,13 +1,17 @@
-import { describe, test, expect, beforeAll } from "bun:test";
-import { join } from "node:path";
+import { describe, test, expect, beforeAll } from "vitest";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   validateAllSkills,
   validateSkill,
   discoverSkills,
+  validateName,
+  validateDescription,
   type SkillValidationResult,
 } from "../src/validator";
 
-const SKILLS_DIR = join(import.meta.dir, "../../../skills");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const SKILLS_DIR = join(__dirname, "../../../skills");
 
 describe("Agent Skills Validation", () => {
   let skillPaths: string[];
@@ -86,8 +90,6 @@ describe("Agent Skills Validation", () => {
 
 describe("Validator Unit Tests", () => {
   describe("validateName", () => {
-    const { validateName } = require("../src/validator");
-
     test("valid names pass", () => {
       expect(validateName("redis-brand", "redis-brand")).toHaveLength(0);
       expect(validateName("coding-standards", "coding-standards")).toHaveLength(0);
@@ -132,8 +134,6 @@ describe("Validator Unit Tests", () => {
   });
 
   describe("validateDescription", () => {
-    const { validateDescription } = require("../src/validator");
-
     test("valid descriptions pass", () => {
       expect(validateDescription("A valid description")).toHaveLength(0);
       expect(validateDescription("Short")).toHaveLength(0);
