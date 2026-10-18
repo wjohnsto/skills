@@ -93,7 +93,7 @@ Tell the reader the emotional or functional benefit.
 You can use analogies to make an idea easy to relate to. You can use an em-dash
 (—) without spaces for an aside or for emphasis.
 
-_Example: Redis makes it possible to bring more powerful, resilient products to market—fast._
+_Example: The new release lets you ship more powerful, resilient products—fast._
 
 ## Shared house style
 
@@ -137,7 +137,7 @@ Always use sentence case for headlines and subheads. Never Use Title Case Like T
 
 Use the Oxford comma in a series.
 
-_Example: Redis is the best option for caching, vector search, and session management._
+_Example: The library supports caching, search, and session management._
 
 ### Hyphens
 

@@ -135,8 +135,8 @@ full dictionary, get the specification from the ASD-STE100 website
 
 _Example:_
 
-> **Warning:** Do not run `FLUSHALL` on a production database. This command
-> deletes all keys in all databases. You cannot recover the data.
+> **Warning:** Do not run `DROP DATABASE` on a production server. This command
+> deletes all tables and data in the database. You cannot recover the data.
 
 ## 8. Punctuation
 
