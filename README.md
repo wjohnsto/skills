@@ -115,7 +115,7 @@ Note: Directories starting with `_` (like `_template`) are skipped during valida
 | `go-style-guide` | Discipline | Writing, reviewing, refactoring, or resolving style questions in Go code | Google's Go style guidance for readability, naming, formatting, packages, comments, errors, interfaces, and testing |
 | `typescript-style-guide` | Discipline | Writing, reviewing, refactoring, or setting up TypeScript code | Identifier naming, comments, classes, functions, variables, control flow, type safety, imports, exports, and type system rules |
 | `visual-guide` | Reference | Building frontend UI components or pages | Brand colors, typography, spacing, buttons, forms, dark theme, layout constraints, component patterns, icons, and design tokens |
-| `writing-guide` | Discipline | Writing or reviewing docs, READMEs, tutorials, blog posts, or other content | Voice, concision, active voice, abbreviations, punctuation, sentence case, CTAs, and common writing red flags |
+| `writing-guide` | Discipline | Writing or reviewing docs, READMEs, tutorials, code comments, blog posts, or other content | ASD-STE100 (Simplified Technical English) rules for technical content, blog voice, active voice, punctuation, sentence case, CTAs, and common writing red flags |
 
 ## License
 

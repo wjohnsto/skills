@@ -1,143 +1,203 @@
 ---
 name: writing-guide
 description: >-
-  Use when writing content, including docs, READMEs, tutorials,
-  and blog posts.
+  Use when writing or reviewing content, including docs, READMEs,
+  tutorials, code comments, and blog posts.
 license: See LICENSE in repository root
 metadata:
   author: Will Johnston
-  version: "1.0"
+  version: "2.0"
   category: discipline
-  triggers: docs, README, tutorial, blog, writing, documentation, content
+  triggers: docs, README, tutorial, blog, writing, documentation, content, ASD-STE100, Simplified Technical English, code comments
 ---
 
-# Writing Guide
+# Writing guide
 
 ## When to use
 
-- Writing docs, READMEs, tutorials, or blog posts
-- Reviewing content for tone, style, or formatting
-- Drafting any user-facing copy or technical content
+- Write docs, READMEs, tutorials, code comments, or blog posts.
+- Review content for tone, style, or format.
+- Write user-facing text or technical content.
 
-## The basics
+## Choose the rule set
 
-Write for broad audiences. Not everyone is going to read every word you write. Use descriptive headlines and subheads and group similar ideas together so they can be consumed more easily.
+Find the content type first. Then apply the correct rules.
 
-- Be clear and specific. Opt for short, punchy sentences. Avoid fluff and unnecessary words.
-- Be consistent. Follow the guidelines presented here. This is a living document and will be updated regularly.
+| Content type | Rules |
+|--------------|-------|
+| Docs, READMEs, tutorials, API references, code comments, commit messages, error messages, UI text | ASD-STE100 (Simplified Technical English) + shared house style |
+| Blog posts and marketing copy | Blog voice + shared house style |
 
-## Writing my way
+If you are not sure, use ASD-STE100.
 
-My writing should always be useful. I do this by following key principles that shape the ways I communicate.
+## Technical content: ASD-STE100
+
+Use ASD-STE100 rules for all technical content. If a house style rule conflicts
+with an STE rule, use the STE rule.
+
+For the full rules, examples, and a self-check, see [asd-ste100](references/asd-ste100.md).
+
+### Core rules
+
+- **Words**: Use simple, approved words. Use one word for one meaning. Use the
+  same technical name for the same thing every time.
+- **No slang**: Do not use idioms, analogies, metaphors, or contractions.
+- **No unnecessary abbreviations**: Write "documentation", not "docs". Define
+  each acronym at its first use, for example "time to live (TTL)".
+- **Noun clusters**: Do not use more than three nouns in a cluster.
+- **Verbs**: Use the simple present, simple past, or simple future tense. Do not
+  use "-ing" forms, except in technical names.
+- **Voice**: Use the active voice in procedures. Use the active voice in
+  descriptions as much as possible.
+- **Sentence length**: Use a maximum of 20 words in procedural sentences. Use a
+  maximum of 25 words in descriptive sentences.
+- **One topic**: Write about one topic in each sentence. Use a maximum of six
+  sentences in each paragraph.
+- **Procedures**: Write instructions in the imperative form. Write one
+  instruction in each step. Put the condition first ("If X, do Y").
+- **Warnings**: Start with a clear command. Then tell the reader the risk.
+- **Punctuation**: Do not use semicolons or em-dashes. Use a colon only before a
+  list or an example.
+
+### Examples
+
+| Do not use | Use |
+|------------|-----|
+| Once you've spun up the cluster, you'll want to configure the docs site. | Start the cluster. Then configure the documentation site. |
+| The config file is being read by the loader. | The loader reads the configuration file. |
+| Utilize the CLI to ensure that the TTL is set. | Use the CLI to make sure that the time to live (TTL) is set. |
+| Run the migration—it's quick—and you're done! | Run the migration. The migration takes about one minute. |
+| You may want to restart the server if the cache isn't updating. | If the cache does not update, restart the server. |
+
+## Blog posts: blog voice
+
+Blog posts can use a more personal voice. Use STE sentence rules as a target,
+but you can use the rules in this section.
 
 ### Keep things concise
 
-I cut to the chase faster than anyone else, dropping all unnecessary words and phrases. And I go even further. I abbreviate common jargon where it makes the most sense, like docs, devs, apps, etc.
+Remove all unnecessary words and phrases. You can abbreviate common jargon, for
+example docs, devs, apps, GenAI, and UX.
 
 ### Talk dev
 
-I don't hold my knowledge over anyone's head. I write like devs because I am a dev—I've experienced the challenges and stresses they face. This shared understanding makes my writing more meaningful for my most important audience.
+Write like a developer for developers. Show that you know the problems and
+stress that developers have. Do not write down to the reader.
 
-### Make it about you, not me
+### Make it about the reader
 
-No matter what I'm writing, I clearly communicate the emotional or functional benefit to the user.
+Tell the reader the emotional or functional benefit.
 
-## Editorial style
+### Analogies and asides
 
-### Abbreviations and acronyms
+You can use analogies to make an idea easy to relate to. You can use an em-dash
+(—) without spaces for an aside or for emphasis.
 
-I'm all about fast. That means saving readers time whenever I can. Abbreviate common industry jargon on every reference. This includes:
+_Example: Redis makes it possible to bring more powerful, resilient products to market—fast._
 
-- Applications > apps
-- Documentation > docs
-- Developers > devs
-- Generative AI > GenAI
-- User experience > UX
-- Others, just ask
+## Shared house style
+
+These rules apply to all content.
 
 ### Active voice
 
-Active voice makes writing easier to digest and saves unnecessary words. Writing in active voice means the subject of the sentence does the action.
+In the active voice, the subject of the sentence does the action.
 
 _Active_: Adam drove the car.
 _Passive_: The car was driven by Adam.
 
-Words like "was" and "by" are sure signs of passive voice. Keep an eye out and rework sentences to avoid using them.
+The words "was" and "by" frequently show the passive voice. Find them and
+change the sentence.
 
 ### Ampersands
 
-Avoid using ampersands unless you are trying to save space in a headline or subhead.
-
-### Analogies
-
-Use these comparisons in paragraphs as needed to create language that feels situationally relatable.
+Do not use ampersands. You can use an ampersand only to save space in a
+headline or subhead.
 
 ### Bulleted lists
 
-Bulleted lists are a great way to break up longer blocks of copy and group sections of information. Always capitalize the first word of each bullet. Use periods if the bullets are complete sentences and no periods if the bullets are sentence fragments.
+- Use bulleted lists to break up long text and to group information.
+- Start each bullet with a capital letter.
+- Use a period at the end of a bullet that is a complete sentence. Do not use a
+  period at the end of a sentence fragment.
 
 ### Calls to action (CTAs)
 
-Every call-to-action, or CTA, should clearly prompt someone to take a functional action. They don't need a creative spin. And they definitely shouldn't have jargon.
+Each call to action (CTA) must tell the reader to do a specific action. Do not
+use creative words or jargon.
+
+_Use_: "Install the client library."
+_Do not use_: "Click here" or "Learn more"
 
 ### Capitalization
 
-Always use sentence case. Never Title Headlines Like This.
+Always use sentence case for headlines and subheads. Never Use Title Case Like This.
 
 ### Commas
 
-Clarity is key in my content. Use the Oxford comma when listing a simple series.
+Use the Oxford comma in a series.
 
 _Example: Redis is the best option for caching, vector search, and session management._
 
-### Dashes and hyphens
+### Hyphens
 
-Use a hyphen (-) without spaces on either side to link words into a single phrase, or to indicate a span or range:
+Use a hyphen (-) without spaces to join words into one modifier or to show a
+range.
+
 _first-time user_
 _Monday-Friday_
 
-Use an em-dash (—) without spaces on either side to offset an aside or for emphasis.
-_Redis—the leader for in-memory storage—is headquartered in Mountain View, California._
-_Redis makes it possible to bring more powerful, resilient products to market—fast._
-
 ### Dates and times
 
-When including the day of the week in a date, place a comma after the day.
-_Example: Friday, December 25_
-
-Write am and pm in lowercase without periods, and include a space after the hour.
-_Example: It's at 9 pm tomorrow._
-
-For times on the hour, don't include minutes.
-_Example: 7 pm, not 7:00 pm_
+- Put a comma after the day of the week: _Friday, December 25_.
+- Write am and pm in lowercase without periods. Put a space after the hour:
+  _9 pm_.
+- For times on the hour, do not write the minutes: _7 pm_, not _7:00 pm_.
 
 ### Headlines and subheads
 
-Use sentence casing without periods for headlines and subheads in pages.
+Use sentence case without periods.
 
 ### Punctuation
 
-Never use exclamation marks. Use tone instead to reflect enthusiasm where appropriate. Use sentence breaks and em-dashes to support irreverent tone in particular.
+Never use exclamation marks.
 
-## Red flags — stop and fix
+## Red flags: stop and fix
+
+All content:
 
 - Passive voice ("was created by", "is used by")
 - Title Case In Headlines
-- Exclamation marks anywhere
-- Unabbreviated jargon (writing "documentation" instead of "docs")
-- Missing Oxford comma in a list
+- Exclamation marks
+- No Oxford comma in a list
 - Generic CTAs ("Click here", "Learn more")
-- Times written as "A.M." or "PM" instead of lowercase "am"/"pm"
+- Times written as "A.M." or "PM" instead of lowercase "am" or "pm"
 
-**If you spot any of these**: rewrite the offending content before moving on.
+Technical content:
+
+- Sentences with more than 20 words (procedures) or 25 words (descriptions)
+- Abbreviations such as "docs", "devs", "apps", or "config"
+- Contractions, idioms, analogies, or slang
+- Progressive or perfect tenses ("is running", "has been deleted")
+- "-ing" words that are not technical names
+- Complex words ("utilize", "ensure", "prior to", "in order to")
+- Semicolons or em-dashes
+- Procedure steps with more than one instruction
+- Different names for the same thing
+
+**If you find one of these**: write the content again before you continue.
 
 ## Common mistakes
 
 | Mistake | Fix |
 |---------|-----|
-| Using passive voice "for variety" | Active voice always. No exceptions for variety. |
-| Skipping abbreviations "for clarity" | Abbreviate common jargon every time. Devs know what "docs" means. |
-| Title Casing headlines | Sentence case only. Always. |
-| Adding exclamation marks for emphasis | Use em-dashes or sentence breaks instead. |
-| Writing long, meandering sentences | Cut. Be direct. If it can be two sentences, make it two. |
-| Using ampersands in body copy | Spell out "and". Reserve ampersands for space-constrained headlines. |
+| Use the blog voice in technical docs | Use ASD-STE100 for all technical content. |
+| Abbreviate words in technical content | Write the full word. Define acronyms at first use. |
+| Use different terms for the same thing "for variety" | Use one term for one thing every time. |
+| Use the passive voice "for variety" | Use the active voice. |
+| Put two or more instructions in one step | Write one instruction in each step. |
+| Put the condition after the instruction | Put the condition first: "If X, do Y." |
+| Write long sentences | Make two sentences. Obey the 20-word and 25-word limits. |
+| Use Title Case in headlines | Use sentence case. |
+| Use exclamation marks for emphasis | Use a short sentence. |
+| Use ampersands in body text | Write "and". |
