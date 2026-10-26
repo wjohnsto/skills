@@ -13,7 +13,7 @@ Agent skills for AI coding assistants. The skills follow the
 | `typescript-style-guide` | Discipline | Writing, reviewing, refactoring, or setting up TypeScript code | Identifier naming, comments, classes, functions, variables, control flow, type safety, imports, exports, and type system rules |
 | `visual-guide` | Reference | Building frontend UI components or pages | Brand colors, typography, spacing, buttons, forms, dark theme, layout constraints, component patterns, icons, and design tokens |
 | `writing-guide` | Discipline | Writing or reviewing docs, READMEs, tutorials, code comments, blog posts, or other content | ASD-STE100 (Simplified Technical English) rules for technical content, blog voice, active voice, punctuation, sentence case, CTAs, and common writing red flags |
-| `yeet` | Discipline | The user mentions ‘yeet’ | Delegate scoped staging, a minimal commit, and a push to the cheapest model with low reasoning, or GPT-6 Luna if prices are unavailable |
+| `yeet` | Discipline | The user mentions ‘yeet’ | Delegate scoped staging, a minimal commit, and a push to GPT-6 Luna with low reasoning |
 
 ## Install
 
