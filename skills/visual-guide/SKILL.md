@@ -1,9 +1,9 @@
 ---
 name: visual-guide
 description: >-
-    Use when building frontend UI components or pages. Covers brand colors,
-    typography scales, spacing tokens, button styles, form inputs, dark theme,
-    layout constraints, and component patterns.
+    Use when you build frontend UI components or pages. Covers brand colors,
+    typography scales, spacing tokens, button styles, form inputs, the dark
+    theme, layout constraints, and component patterns.
 license: MIT
 metadata:
     author: wjohnsto
@@ -12,23 +12,23 @@ metadata:
     triggers: frontend, UI, colors, typography, brand, theme, dark, icons, buttons, forms, inputs, cards, modals, shadows, breakpoints
 ---
 
-# Visual Guide
+# Visual guide
 
-## When to Use
+## When to use
 
-- Choosing colors, fonts, or spacing for UI components
-- Creating new pages or layouts
-- Styling buttons, links, form inputs, or text
-- Implementing the dark theme
-- Checking brand-correct color values or CSS variable names
-- Looking up shadow, radius, z-index, or breakpoint tokens
-- Building cards, modals, tooltips, or badges
+- Choose colors, fonts, or spacing for UI components.
+- Create new pages or layouts.
+- Style buttons, links, form inputs, or text.
+- Implement the dark theme.
+- Find the correct brand color values or CSS variable names.
+- Find shadow, radius, z-index, or breakpoint tokens.
+- Build cards, modals, tooltips, or badges.
 
 ## Typography
 
-This project uses three font families, assigned to CSS custom properties.
+This project uses three font families. Each font family has a CSS custom property.
 
-### Font Families
+### Font families
 
 | Variable        | Type       | Stack                      | Weights              | Usage                                |
 | --------------- | ---------- | -------------------------- | -------------------- | ------------------------------------ |
@@ -38,26 +38,26 @@ This project uses three font families, assigned to CSS custom properties.
 
 Default font family: `var(--font-sans)`.
 
-### Lexend Font
+### Lexend font
 
-`--font-prose` uses [Lexend](https://www.lexend.com/), a variable sans-serif typeface designed for improved reading comfort and comprehension. It is licensed under the SIL Open Font License (OFL).
+`--font-prose` uses [Lexend](https://www.lexend.com/), a variable sans-serif typeface. Lexend makes text easier to read and to understand. The license for Lexend is the SIL Open Font License (OFL).
 
-#### Font Files
+#### Font files
 
-Font files are located at:
+The font files are in this directory:
 
 ```
 assets/fonts/lexend/
 ```
 
-| File                              | Type     | Axis   | Use When                              |
-| --------------------------------- | -------- | ------ | ------------------------------------- |
-| `Lexend-VariableFont_wght.ttf`    | Variable | `wght` | Preferred — single file, all weights  |
-| `static/Lexend-{Weight}.ttf`      | Static   | —      | Fallback when variable fonts are unsupported |
+| File                           | Type     | Axis   | Use when                                                 |
+| ------------------------------ | -------- | ------ | -------------------------------------------------------- |
+| `Lexend-VariableFont_wght.ttf` | Variable | `wght` | Preferred, one file for all weights                      |
+| `static/Lexend-{Weight}.ttf`   | Static   | None   | Fallback for browsers that do not support variable fonts |
 
-Available static weights: Thin (100), ExtraLight (200), Light (300), Regular (400), Medium (500), SemiBold (600), Bold (700), ExtraBold (800), Black (900).
+The static files have these weights: Thin (100), ExtraLight (200), Light (300), Regular (400), Medium (500), SemiBold (600), Bold (700), ExtraBold (800), Black (900).
 
-#### @font-face Example
+#### @font-face example
 
 ```css
 @font-face {
@@ -68,11 +68,11 @@ Available static weights: Thin (100), ExtraLight (200), Light (300), Regular (40
 }
 ```
 
-### Heading Scale
+### Heading scale
 
-Headings use the sans font at most sizes, transitioning to the monospace font at the `xs` size for eyebrow labels.
+Headings use the sans font at most sizes. At the `xs` size, headings use the monospace font for eyebrow labels.
 
-| Size Token | Font          | Desktop Size | Mobile Size | Line Height | Notes                           |
+| Size token | Font          | Desktop size | Mobile size | Line height | Notes                           |
 | ---------- | ------------- | ------------ | ----------- | ----------- | ------------------------------- |
 | `3xl`      | `--font-sans` | 11.25rem     | 5.25rem     | 90%         | letter-spacing: -0.01em         |
 | `2xl`      | `--font-sans` | 6.25rem      | 5rem        | 85%         | uppercase, letter-spacing: -1px |
@@ -83,11 +83,11 @@ Headings use the sans font at most sizes, transitioning to the monospace font at
 | `sm`       | `--font-sans` | 1.625rem     | 1.375rem    | 1.9375rem   |                                 |
 | `xs`       | `--font-mono` | 0.875rem     | 0.75rem     | 1.05rem     | letter-spacing: 1px             |
 
-### Body Text Scale
+### Body text scale
 
-Body text always uses `--font-sans`. Where mobile size is not listed, it matches the desktop value. Where line height is not listed, use `normal`.
+Body text always uses `--font-sans`. If the table does not give a mobile size, use the desktop size. If the table does not give a line height, use `normal`.
 
-| Size Token | Desktop Size | Mobile Size | Line Height |
+| Size token | Desktop size | Mobile size | Line height |
 | ---------- | ------------ | ----------- | ----------- |
 | `3xl`      | 2rem         | 1.5rem      | 120%        |
 | `2xl`      | 1.5rem       | 1.5rem      | 120%        |
@@ -99,7 +99,7 @@ Body text always uses `--font-sans`. Where mobile size is not listed, it matches
 | `xs`       | 0.75rem      | 0.75rem     | 150%        |
 | `2xs`      | 0.625rem     | 0.625rem    | 150%        |
 
-### Font Weights
+### Font weights
 
 | Token      | Weight |
 | ---------- | ------ |
@@ -110,15 +110,15 @@ Body text always uses `--font-sans`. Where mobile size is not listed, it matches
 
 ## Colors
 
-Color palette is sourced from the [Nightfox](https://github.com/EdenEast/nightfox.nvim) theme family, specifically **CarbonFox**.
+The color palette comes from **CarbonFox**, a theme in the [Nightfox](https://github.com/EdenEast/nightfox.nvim) theme family.
 
-Accent color variables follow the pattern `--{color}`, `--{color}-dim`, and `--{color}-bright`.
+The names of the accent color variables use the patterns `--{color}`, `--{color}-dim`, and `--{color}-bright`.
 
 ### Palette (CarbonFox)
 
 #### Backgrounds
 
-Layered surface colors, from deepest to highest elevation.
+These are the surface colors in layers, from the lowest to the highest elevation.
 
 | Name | Variable | Hex       | Usage                |
 | ---- | -------- | --------- | -------------------- |
@@ -130,7 +130,7 @@ Layered surface colors, from deepest to highest elevation.
 
 #### Foregrounds
 
-Text colors, from brightest to most muted.
+These are the text colors, from the brightest to the most muted.
 
 | Name | Variable | Hex       | Usage                     |
 | ---- | -------- | --------- | ------------------------- |
@@ -152,23 +152,23 @@ Text colors, from brightest to most muted.
 | ----------- | --------- |
 | `--comment` | `#6e6f70` |
 
-#### Accent Colors
+#### Accent colors
 
 | Color   | Dim       | Base      | Bright    | Usage                                   |
 | ------- | --------- | --------- | --------- | --------------------------------------- |
 | Blue    | `#6690d9` | `#78a9ff` | `#8cb6ff` | Primary accent, links, focus rings      |
-| Cyan    | `#2b96d9` | `#33b1ff` | `#52bdff` | Info, highlights, secondary interactive |
+| Cyan    | `#2b96d9` | `#33b1ff` | `#52bdff` | Information, highlights, secondary interactive |
 | Green   | `#1fa25a` | `#25be6a` | `#46c880` | Success states, confirmations           |
 | Red     | `#ca4780` | `#ee5396` | `#f16da6` | Errors, destructive actions             |
 | Pink    | `#d96b9b` | `#ff7eb6` | `#ff91c1` | Decorative accents, badges              |
 | Magenta | `#a27fd9` | `#be95ff` | `#c8a5ff` | Warnings, emphasis, tags                |
 | Teal    | `#07a19e` | `#08bdba` | `#2dc7c4` | Tertiary accent, types                  |
 
-## Theming
+## Theme
 
 `color-scheme: dark`
 
-| Semantic Token     | Maps To  | Resolved Value |
+| Semantic token     | Maps to  | Resolved value |
 | ------------------ | -------- | -------------- |
 | `--bg-default`     | `--bg0`  | `#0c0c0c`      |
 | `--bg-surface`     | `--bg1`  | `#161616`      |
@@ -180,9 +180,9 @@ Text colors, from brightest to most muted.
 | `--border`         | `--bg3`  | `#353535`      |
 | `--stroke-divider` | `--bg4`  | `#535353`      |
 
-### Semantic Colors
+### Semantic colors
 
-| Token       | Maps To      | Resolved Value | Usage                    |
+| Token       | Maps to      | Resolved value | Usage                    |
 | ----------- | ------------ | -------------- | ------------------------ |
 | `--accent`  | `--blue`     | `#78a9ff`      | Primary interactive      |
 | `--error`   | `--red`      | `#ee5396`      | Errors, destructive      |
@@ -190,45 +190,46 @@ Text colors, from brightest to most muted.
 | `--success` | `--green`    | `#25be6a`      | Confirmations, positive  |
 | `--info`    | `--cyan`     | `#33b1ff`      | Informational highlights |
 
-### CSS Custom Properties Scaffold
+### CSS custom properties
 
-For a ready-to-paste `:root` block that wires up all tokens, see [references/theme-setup.md](references/theme-setup.md).
+For a `:root` block that defines all tokens, see [references/theme-setup.md](references/theme-setup.md). You can copy this block into your project without changes.
 
 ## Buttons
 
-### Primary Button
+### Primary button
 
-| State    | Background       | Border           | Text Color |
+| State    | Background       | Border           | Text color |
 | -------- | ---------------- | ---------------- | ---------- |
 | Default  | `--blue`         | `--blue-bright`  | `--bg0`    |
 | Hover    | `--blue-bright`  | `--blue-bright`  | `--bg0`    |
 | Active   | `--blue-dim`     | `--blue`         | `--bg0`    |
 | Disabled | `--bg2`          | `--bg3`          | `--fg3`    |
 
-### Secondary Button
+### Secondary button
 
-| State    | Background | Border   | Text Color |
+| State    | Background | Border   | Text color |
 | -------- | ---------- | -------- | ---------- |
 | Default  | `--bg2`    | `--bg4`  | `--fg0`    |
 | Hover    | `--bg3`    | `--sel1` | `--fg0`    |
 | Active   | `--bg3`    | `--sel1` | `--fg0`    |
 | Disabled | `--bg1`    | `--bg3`  | `--fg3`    |
 
-### Button Styling
+### Button style
 
 - Font: `--font-sans`, 0.875rem, weight 500
 - Border: 1px solid
-- Border radius: 5px (`--radius-md`) — all buttons use the same radius
+- Border radius: 5px (`--radius-md`) for all buttons
 - Size tokens: `xs` (0.25rem 0.5rem), `sm` (0.5rem 0.75rem), `md` (0.625rem 1.5rem), `lg` (0.9375rem 2.25rem)
 - Disabled: `opacity: 0.5; cursor: not-allowed; pointer-events: none`
 
-### Focus States
+### Focus states
 
 All interactive elements use the same focus ring:
 
 - `outline: 2px solid var(--accent)`
 - `outline-offset: 2px`
-- Apply on `:focus-visible` only (not `:focus`) to avoid showing rings on mouse clicks
+
+Apply the focus ring only on `:focus-visible`, not on `:focus`. Then mouse clicks do not show the ring.
 
 ## Links
 
@@ -240,9 +241,9 @@ All interactive elements use the same focus ring:
 | Visited        | `--magenta`      | none          |
 | Focus-visible  | `--accent`       | focus ring    |
 
-Focus ring matches the button focus style: `outline: 2px solid var(--accent); outline-offset: 2px`.
+The focus ring is the same as the button focus style: `outline: 2px solid var(--accent); outline-offset: 2px`.
 
-## Spacing Tokens
+## Spacing tokens
 
 | Token | Desktop  | Mobile   |
 | ----- | -------- | -------- |
@@ -255,7 +256,7 @@ Focus ring matches the button focus style: `outline: 2px solid var(--accent); ou
 
 ## Shadows
 
-Use shadows sparingly. On dark backgrounds, shadows are less visible — rely on background elevation changes for primary hierarchy and use shadows as supplemental depth cues.
+Use few shadows. Shadows are less visible on dark backgrounds. Use changes in background elevation to show the primary hierarchy. Use shadows only as an additional cue for depth.
 
 | Token | Value                                            | Usage                   |
 | ----- | ------------------------------------------------ | ----------------------- |
@@ -263,9 +264,9 @@ Use shadows sparingly. On dark backgrounds, shadows are less visible — rely on
 | `md`  | `0 4px 12px rgba(0, 0, 0, 0.2)`                 | Cards, dropdowns        |
 | `lg`  | `0 8px 30px rgba(0, 0, 0, 0.3)`                 | Modals, dialogs         |
 
-## Border Radius
+## Border radius
 
-Only three border-radius values are allowed. Never use any other value (no `0`, no pill `9999px`, no arbitrary radii).
+You can use only three border-radius values. Never use a different value. For example, do not use `0`, a pill radius of `9999px`, or an arbitrary radius.
 
 | Token | Value  | Usage                                        |
 | ----- | ------ | -------------------------------------------- |
@@ -273,9 +274,9 @@ Only three border-radius values are allowed. Never use any other value (no `0`, 
 | `md`  | 5px    | Default UI: buttons, inputs, cards, selects  |
 | `lg`  | 10px   | Large surfaces: modals, dialogs, panels      |
 
-## Z-Index
+## Z-index
 
-Layered from lowest to highest. Never use arbitrary z-index values outside this scale.
+The layers go from the lowest to the highest. Never use an arbitrary z-index value outside this scale.
 
 | Token      | Value | Usage                        |
 | ---------- | ----- | ---------------------------- |
@@ -289,15 +290,15 @@ Layered from lowest to highest. Never use arbitrary z-index values outside this 
 
 ## Breakpoints
 
-Mobile-first: base styles target the smallest viewport, then layer on overrides at each breakpoint using `min-width`.
+Use a mobile-first approach. Write the base styles for the smallest viewport. Then add overrides at each breakpoint with `min-width`.
 
 | Token | Width   | Usage                              |
 | ----- | ------- | ---------------------------------- |
 | `sm`  | 640px   | Large phones, landscape            |
 | `md`  | 768px   | Tablets                            |
 | `lg`  | 1024px  | Small desktops, landscape tablets  |
-| `xl`  | 1260px  | Desktop — wider container padding  |
-| `2xl` | 1600px  | Large desktop — max container      |
+| `xl`  | 1260px  | Desktop, wider container padding   |
+| `2xl` | 1600px  | Large desktop, widest container    |
 
 ## Transitions
 
@@ -307,7 +308,7 @@ Mobile-first: base styles target the smallest viewport, then layer on overrides 
 | `normal` | 200ms    | Standard UI (buttons, links, inputs)  |
 | `slow`   | 350ms    | Emphasis (modals, panels, overlays)   |
 
-Default easing: `ease-in-out`. Always respect the user's motion preference:
+The default easing is `ease-in-out`. Always respect the motion preference of the user. Use this CSS:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -320,29 +321,29 @@ Default easing: `ease-in-out`. Always respect the user's motion preference:
 
 ## Layout
 
-- Max container width: 1390px (1280px below `2xl` breakpoint)
-- Container padding: 24px (80px between `xl` and `2xl` breakpoints)
+- Maximum container width: 1390px (1280px below the `2xl` breakpoint)
+- Container padding: 24px (80px between the `xl` and `2xl` breakpoints)
 - Base font size: 16px
 - Text rendering: `optimizeLegibility` with `-webkit-font-smoothing: antialiased`
 - Color scheme: `dark`
-- Approach: mobile-first — write base styles for small screens, then use `@media (min-width)` to add overrides at each breakpoint (see Breakpoints above)
+- Approach: mobile-first, with base styles for small screens and `@media (min-width)` overrides at each breakpoint (see Breakpoints above)
 
 ## Icons
 
-This project uses [Iconoir](https://iconoir.com/), an open-source SVG icon library (MIT licensed).
+This project uses [Iconoir](https://iconoir.com/), an open-source SVG icon library. Iconoir has the MIT license.
 
 ### Variants
 
-| Variant   | Style   | Count | Use For                                    |
+| Variant   | Style   | Count | Use for                                    |
 | --------- | ------- | ----- | ------------------------------------------ |
 | `regular` | Outline | 1383  | UI chrome, navigation, default icon style  |
 | `solid`   | Filled  | 288   | Emphasis, active/selected states, badges   |
 
-All 288 solid icons also exist in the regular set. Default to `regular`; use `solid` for visual emphasis or toggled-on states.
+All 288 solid icons are also in the regular set. Use `regular` by default. Use `solid` for visual emphasis or for toggled-on states.
 
-### File Paths
+### File paths
 
-Icons are located at:
+The icons are at this path:
 
 ```
 assets/icons/{variant}/{icon-name}.svg
@@ -350,22 +351,22 @@ assets/icons/{variant}/{icon-name}.svg
 
 Examples: `assets/icons/regular/arrow-right.svg`, `assets/icons/solid/star.svg`
 
-### SVG Specifications
+### SVG specifications
 
-| Property       | Regular (Outline)    | Solid (Filled)                   |
+| Property       | Regular (outline)    | Solid (filled)                   |
 | -------------- | -------------------- | -------------------------------- |
 | Size           | 24 x 24             | 24 x 24                         |
 | `stroke-width` | 1.5                  | 1.5                              |
 | `stroke`       | `currentColor`       | `currentColor`                   |
 | `fill`         | `none`               | `currentColor`                   |
 
-### Styling
+### Icon style
 
-- Icons inherit text color via `currentColor` — set `color` on the parent or the SVG element to recolor.
-- Resize with `width` and `height` attributes or CSS; the 24x24 viewBox scales proportionally.
-- Adjust stroke weight on regular icons with the `stroke-width` attribute.
-- Icon names use kebab-case (e.g., `arrow-right`, `warning-circle`, `send-mail`).
+- Icons get the text color from `currentColor`. To change the color, set `color` on the parent or on the SVG element.
+- To change the size, use the `width` and `height` attributes or CSS. The 24x24 viewBox scales proportionally.
+- To change the stroke weight of regular icons, use the `stroke-width` attribute.
+- Icon names use kebab-case, for example `arrow-right`, `warning-circle`, and `send-mail`.
 
-For categorized icon listings and usage examples, see [references/icons.md](references/icons.md).
+For lists of icons by category and for usage examples, see [references/icons.md](references/icons.md).
 
-For component-level styling (forms, cards, modals, tooltips, badges), see [references/components.md](references/components.md).
+For the style of components such as forms, cards, modals, tooltips, and badges, see [references/components.md](references/components.md).

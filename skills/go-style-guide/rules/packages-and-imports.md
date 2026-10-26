@@ -1,7 +1,7 @@
 ---
 description: >-
-  Package and import guidance from Google's Go style docs, including naming,
-  structure, dependency choices, and local consistency.
+  Package and import guidance from Google's Go style documentation. It covers
+  naming, structure, dependency choices, and local consistency.
 ---
 
 # Packages and imports
@@ -10,16 +10,17 @@ description: >-
 
 - Choose focused package boundaries that make dependencies and behavior easy to
   understand.
-- Avoid needless abstraction layers and "utility package" sprawl.
-- Prefer concrete, problem-shaped packages over catch-all buckets.
-- Keep dependencies minimal so behavior stays easier to trace and maintain.
+- Avoid unnecessary abstraction layers and too many "utility packages".
+- Prefer concrete packages that match a specific problem over packages that
+  hold unrelated code.
+- Keep dependencies minimal so that behavior is easier to trace and maintain.
 
 ## Package naming
 
-- Package names should be concise, lowercase, and easy to say at the call site.
-- Do not insert underscores into normal package names.
-- Rename third-party or generated packages locally if their original import name
-  does not fit Go naming rules.
+- Use concise, lowercase package names that are easy to say at the call site.
+- Do not add underscores to normal package names.
+- If the original import name of a third-party or generated package does not
+  fit Go naming rules, rename it locally.
 
 ```go
 import foopb "example.com/project/foo_go_proto"
@@ -27,16 +28,18 @@ import foopb "example.com/project/foo_go_proto"
 
 ## Imports and mechanisms
 
-- **Canonical**: Prefer the simplest standard mechanism that solves the problem.
-- Start with core language constructs, then the standard library, then any
-  shared internal library that is clearly justified.
-- Do not add a dependency or custom abstraction just to appear more generic.
+- **Canonical**: Prefer the simplest standard mechanism that solves the
+  problem.
+- Start with core language constructs. Then use the standard library. Then use
+  a shared internal library, but only if it is clearly justified.
+- Do not add a dependency or custom abstraction only to make the code look more
+  generic.
 
 ## Consistency
 
-- Package-level consistency matters because readers build expectations within a
-  file and package.
+- Package-level consistency is important because readers build expectations in
+  a file and package.
 - Consistency does not override stronger guidance from the canonical style
   guide.
-- When multiple local files rename the same import, keep the local alias
-  consistent unless a file has a strong reason to differ.
+- If multiple local files rename the same import, keep the local alias
+  consistent. A file can differ only for a strong reason.

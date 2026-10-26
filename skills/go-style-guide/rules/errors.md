@@ -1,26 +1,27 @@
 ---
 description: >-
-  Error-handling guidance from Google's Go style docs, focused on readable
-  control flow and actionable diagnostics.
+  Error-handling guidance from Google's Go style documentation, with a focus on
+  readable control flow and actionable diagnostics.
 ---
 
 # Errors
 
 ## Core expectations
 
-- **Canonical**: Error handling should be easy to scan and understand.
-- Error paths should tell the reader what failed and where the failure matters.
-- Prefer clear, direct control flow over compact expressions that hide important
-  behavior.
+- **Canonical**: Make error handling easy to scan and understand.
+- Make each error path tell the reader what failed and where the failure
+  matters.
+- Prefer clear, direct control flow over compact expressions that hide
+  important behavior.
 
 ## Readability rules
 
-- Keep common `if err != nil` checks straightforward unless there is a strong
+- Keep common `if err != nil` checks straightforward unless you have a strong
   reason to deviate.
-- If a subtle error check differs from the common pattern, make that difference
-  obvious with structure or a short comment.
-- Avoid hiding important failure logic inside helpers when the caller needs to
-  see it to reason about correctness.
+- If a subtle error check is different from the common pattern, make that
+  difference obvious with structure or a short comment.
+- Avoid helpers that hide important failure logic if the caller must see that
+  logic to know that the code is correct.
 
 ```go
 if err := doSomething(); err != nil {
@@ -30,9 +31,9 @@ if err := doSomething(); err != nil {
 
 ## Diagnostics
 
-- Error messages and test failures should be useful to the person debugging the
+- Make error messages and test failures useful to the person who debugs the
   issue.
-- Prefer diagnostics that show the failing operation or meaningful mismatch
-  rather than generic failure text.
-- Keep guidance scoped to what the Google style docs cover. Do not import extra
-  error-style dogma from unrelated conventions.
+- Prefer diagnostics that show the failed operation or the meaningful mismatch,
+  not generic failure text.
+- Keep guidance in the scope of the Google style documentation. Do not add
+  extra error-style rules from unrelated conventions.

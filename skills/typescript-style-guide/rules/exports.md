@@ -17,7 +17,7 @@ Use named exports in all code:
 export class Foo { ... }
 ```
 
-Do not use default exports. This ensures that all imports follow a uniform
+Do not use default exports. This makes sure that all imports follow a uniform
 pattern.
 
 ```ts
@@ -25,44 +25,44 @@ pattern.
 export default class Foo { ... }
 ```
 
-> Why? Default exports provide no canonical name, which makes central
-> maintenance difficult with relatively little benefit to code owners,
-> including potentially decreased readability:
+> Why? Default exports do not give a canonical name. This makes central
+> maintenance difficult, and code owners get relatively little benefit. Default
+> exports can also make code less readable:
 >
 > ```ts
 > import Foo from './bar'; // Legal.
 > import Bar from './bar'; // Also legal.
 > ```
 >
-> Named exports have the benefit of erroring when import statements try to
-> import something that hasn't been declared. Additionally, default exports
-> encourage people to put everything into one big object to namespace it all
-> together, which is unnecessary when file scope already provides namespacing.
+> Named exports give an error when an import statement tries to import
+> something that is not declared. Also, default exports encourage people to put
+> everything into one big object as a namespace. This is unnecessary because
+> the file scope already gives a namespace.
 
 ## Export visibility
 
-TypeScript does not support restricting the visibility for exported symbols.
-Only export symbols that are used outside of the module. Generally minimize the
-exported API surface of modules.
+TypeScript cannot restrict the visibility of exported symbols. Export only the
+symbols that code outside of the module uses. In general, minimize the exported
+API surface of modules.
 
-## Mutable Exports
+## Mutable exports
 
-Regardless of technical support, mutable exports can create hard to understand
-and debug code, in particular with re-exports across multiple modules. One way
-to paraphrase this style point is that `export let` is not allowed.
+Even where mutable exports are technically possible, they can make code hard to
+understand and debug. This is especially true with re-exports across multiple
+modules. In other words, `export let` is not allowed.
 
 ```ts
 // Bad
 export let foo = 3;
-// In pure ES6, foo is mutable and importers will observe the value change after a second.
-// In TS, if foo is re-exported by a second file, importers will not see the value change.
+// In pure ES6, foo is mutable. Importers see the value change after one second.
+// In TypeScript, if a second file re-exports foo, importers do not see the value change.
 window.setTimeout(() => {
     foo = 4;
 }, 1000 /* ms */);
 ```
 
-If one needs to support externally accessible and mutable bindings, they should
-instead use explicit getter functions.
+If you must support mutable bindings that external code can access, use
+explicit getter functions instead.
 
 ```ts
 // Good
@@ -76,9 +76,9 @@ export function getFoo() {
 }
 ```
 
-For the common pattern of conditionally exporting either of two values, first do
-the conditional check, then the export. Make sure that all exports are final
-after the module's body has executed.
+A common pattern is to export one of two values, based on a condition. For this
+pattern, do the conditional check first, and then the export. Make sure that
+all exports are final after the module body executes.
 
 ```ts
 // Good
@@ -89,10 +89,10 @@ function pickApi() {
 export const SomeApi = pickApi();
 ```
 
-## Container Classes
+## Container classes
 
-Do not create container classes with static methods or properties for the sake
-of namespacing.
+Do not create container classes with static methods or properties only to get
+a namespace.
 
 ```ts
 // Bad
@@ -114,8 +114,8 @@ export function bar() {
 }
 ```
 
-## Organize By Feature
+## Organize by feature
 
 Organize packages by feature, not by type. For example, an online shop _should_
-have packages named `products`, `checkout`, `backend`, not ~~`views`, `models`,
-`controllers`~~.
+have packages named `products`, `checkout`, and `backend`, not ~~`views`,
+`models`, and `controllers`~~.

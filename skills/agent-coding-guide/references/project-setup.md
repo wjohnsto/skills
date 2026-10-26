@@ -1,45 +1,45 @@
 ---
 description: >-
-    Base technologies, file structure, and configuration for new apps.
+    Base technologies, file structure, and configuration for new applications.
 metadata:
     tags: [setup, tech-stack, file-structure, prettier, docker]
 ---
 
-# Project Setup
+# Project setup
 
 ## Base technologies
 
-When starting a new app, use the following:
+When you start a new application, use these technologies:
 
 - Bun
 - TypeScript
 - Hono
 - Zod
-- Pino (logging)
+- Pino (logs)
     - pino-pretty
     - pino-http
 - Handlebars
 - HTMX
 - CSS (not Tailwind)
 - Docker
-- Eslint
+- ESLint
 - Prettier
 - SQLite
 
-Every app should have the following scripts in the package.json:
+Add these scripts to the `package.json` file of each application:
 
-- `dev` - run a dev server and watch for changes
-- `build` - build for production
-- `start` - start a production server
-- `lint` - lint the files
-- `lint:fix` - lint the files and apply automatic fixes
-- `format` - run prettier on all the files
-- `typecheck` - check the typings but don't emit the compiled file output
-- `test` - run all tests
+- `dev`: Run a development server and watch for changes.
+- `build`: Build for production.
+- `start`: Start a production server.
+- `lint`: Lint the files.
+- `lint:fix`: Lint the files and apply automatic fixes.
+- `format`: Run Prettier on all the files.
+- `typecheck`: Check the types, but do not emit the compiled files.
+- `test`: Run all tests.
 
-### Prettier config
+### Prettier configuration
 
-Put this in the `package.json`:
+Put this configuration in the `package.json` file:
 
 ```json
 {
@@ -63,33 +63,47 @@ Put this in the `package.json`:
 
 ### Docker
 
-Use a multi-stage Dockerfile so the final Docker image is as small as possible.
+Use a multi-stage Dockerfile to make the final Docker image as small as
+possible.
 
 ### TypeScript
 
-Use the [typescript-style-guide](../../typescript-style-guide/SKILL.md) skill when writing TypeScript.
+When you write TypeScript, use the
+[typescript-style-guide](../../typescript-style-guide/SKILL.md) skill.
 
 ## File structure
 
-- `__tests__` should contain all tests
-- Keep all app code in a `src` directory
-    - It is okay to have a `public` directory on the root for public frontend files
-- Within a backend app you should use the following folders when necessary:
-    - `src/components` - stores all the controllers, routes, and models for a bounded context (data type) within the app within their own folders
-        - e.g. `src/components/users` would contain all the CRUD operations for a user
-    - `src/services` - contains all the logic needed to hit external APIs
-    - `src/utils` - contains all the logic for internal utility functions such as string/type conversions, date logic, etc.
-    - `src/views` - contains the views/partials
-    - `src/config.ts` - maps environment variables and other configuration into an object that can be used in other files
-    - `src/index.ts` - contains only the logic needed to run the server
-    - `src/app.ts` - contains the app setup logic (e.g. top-level routes, cors, session setup, etc.)
-    - `src/db.ts` - contains the setup and connection logic for the database
+- Put all tests in `__tests__`.
+- Put all application code in a `src` directory.
+    - You can put a `public` directory in the root for public frontend files.
+- In a backend application, use these directories and files when necessary:
+    - `src/components`: Contains a directory for each bounded context (data
+      type) of the application. Each directory contains the controllers,
+      routes, and models for its bounded context.
+        - For example, `src/components/users` contains all the create, read,
+          update, and delete (CRUD) operations for a user.
+    - `src/services`: Contains all the logic that calls external APIs.
+    - `src/utils`: Contains the logic for internal utility functions. For
+      example, string and type conversions, and date logic.
+    - `src/views`: Contains the views and partials.
+    - `src/config.ts`: Maps environment variables and other configuration into
+      an object that other files can use.
+    - `src/index.ts`: Contains only the logic that runs the server.
+    - `src/app.ts`: Contains the setup logic of the application. For example,
+      top-level routes, cross-origin resource sharing (CORS), and
+      session setup.
+    - `src/db.ts`: Contains the setup and connection logic for the database.
 
 ### Component structure
 
-Each component (`src/components/*`) should have separate files for:
+Give each component (`src/components/*`) a separate file for each of these
+parts:
 
-- `router` - Defines the routes/API for the component and contains minimal logic needed to pull data off of the request object and respond
-- `controller` - Contains the bulk of the business logic. Should not interact with the request and response objects directly.
-- `model` - Contains the data logic (i.e. mapping from objects to database columns, etc.). This includes functions for performing actions on the database.
-- `validator` - Uses zod to validate all API request bodies
+- `router`: Defines the routes and the API of the component. Contains only the
+  minimal logic that gets data from the request object and sends the response.
+- `controller`: Contains most of the business logic. Does not use the request
+  and response objects directly.
+- `model`: Contains the data logic, for example the map from objects to
+  database columns. This includes the functions that do actions on the
+  database.
+- `validator`: Uses Zod to validate all API request bodies.

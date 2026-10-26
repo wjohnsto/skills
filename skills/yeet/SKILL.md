@@ -5,12 +5,13 @@ description: Use when the user mentions ‘yeet’
 
 # Yeet
 
-1. Run GPT-6 Luna as a subagent with low reasoning in the current checkout.
-   Include the requested change scope and these instructions:
-   - Inspect Git status and the diff.
-   - Stage all files for the requested change. Exclude unrelated changes and secrets.
+1. Start GPT-6 Luna as a subagent in the current checkout. Set the reasoning
+   level to low.
+2. Give the subagent the scope of the requested change and these instructions:
+   - Examine the Git status and the diff.
+   - Stage all files for the requested change. Do not stage unrelated changes or secrets.
    - Read the `writing-guide` skill.
-   - Write one short, imperative commit subject that follows `writing-guide`. Omit the body and trailers.
-   - Commit only the requested change. Leave unrelated changes untouched.
-   - Push the current branch without force.
-   - If the scope is unclear or a command fails, stop and report it.
+   - Write one short commit subject in the imperative form. Obey the `writing-guide` skill. Do not write a body or trailers.
+   - Commit only the requested change. Keep unrelated changes as they are.
+   - Push the current branch. Do not use force.
+   - If the scope is not clear or a command fails, stop and report the problem.

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Testing guidance from Google's Go style materials, including naming,
+  Testing guidance from Google's Go style materials. It covers naming,
   diagnostics, examples, and maintainable test structure.
 ---
 
@@ -8,29 +8,29 @@ description: >-
 
 ## Readability goals
 
-- **Canonical**: Tests should support maintainability and give clear,
+- **Canonical**: Write tests that support maintainability and give clear,
   actionable diagnostics when they fail.
-- Prefer tests that surface the relevant behavior with high signal and low
-  ceremony.
+- Prefer tests that show the relevant behavior clearly and have little
+  boilerplate.
 - Use runnable examples or focused test cases when they clarify correct usage.
 
-## Naming and package structure
+## Names and package structure
 
-- Black-box tests should use the `_test` package suffix, such as
+- Use the `_test` package suffix for black-box tests, such as
   `linkedlist_test`.
-- Test helper packages can append `test` to the production package name, such as
-  `creditcardtest`.
-- When multiple doubles exist, name them for behavior or target type so the test
-  reads clearly.
+- Test helper packages can append `test` to the production package name, such
+  as `creditcardtest`.
+- If multiple test doubles exist, name them for their behavior or target type.
+  Then the test is clear to the reader.
 
 ## Test code shape
 
-- Favor test structure that makes the important differences between cases easy to
-  spot.
-- Table-driven tests are useful when they reduce repetition without hiding the
+- Prefer a test structure that makes the important differences between cases
+  easy to see.
+- Table-driven tests are useful when they reduce repetition and do not hide the
   behavior under test.
-- Keep helper names, local names, and failure messages aligned with the concept
-  under test.
+- Keep helper names, local names, and failure messages consistent with the
+  concept under test.
 
 ```go
 if got, want := spyCC.Charges, charges; !cmp.Equal(got, want) {
@@ -40,9 +40,9 @@ if got, want := spyCC.Charges, charges; !cmp.Equal(got, want) {
 
 ## Review heuristics
 
-- Prefer failure messages that show `got` and `want` or otherwise make the
-  mismatch obvious.
+- Prefer failure messages that show `got` and `want`, or that make the mismatch
+  obvious in a different way.
 - Keep test abstractions light. Over-engineered helpers can hide the behavior
-  the test is supposed to document.
-- Limit guidance to practices that appear in Google's Go style materials rather
-  than importing unrelated testing rules.
+  that the test documents.
+- Limit guidance to practices that appear in Google's Go style materials. Do
+  not add unrelated testing rules.

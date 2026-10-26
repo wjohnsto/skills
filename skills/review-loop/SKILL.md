@@ -28,13 +28,14 @@ The goal of the review loop is to keep `main` at high quality.
 4. Apply the suggestions that you accept.
 5. Send the changes to Sol again. Include the previous findings and your
    response to each finding.
-6. Continue until Sol approves.
+6. Do steps 3-5 again until Sol approves.
 
 ## Owner rules
 
 - You make the final decision on each suggestion.
-- Prevent scope creep. Reject suggestions that are not necessary for the
-  change. Give the reason when you reject a suggestion.
+- Do not let the scope of the change grow. Reject suggestions that the change
+  does not need.
+- If you reject a suggestion, give the reason.
 
 ## Reviewer rules
 

@@ -1,7 +1,7 @@
 ---
 name: writing-guide
 description: >-
-  Use when writing or reviewing content, including docs, READMEs,
+  Use when you write or review content, for example documentation, READMEs,
   tutorials, code comments, and blog posts.
 license: See LICENSE in repository root
 metadata:
@@ -15,7 +15,7 @@ metadata:
 
 ## When to use
 
-- Write docs, READMEs, tutorials, code comments, or blog posts.
+- Write documentation, READMEs, tutorials, code comments, or blog posts.
 - Review content for tone, style, or format.
 - Write user-facing text or technical content.
 
@@ -25,15 +25,15 @@ Find the content type first. Then apply the correct rules.
 
 | Content type | Rules |
 |--------------|-------|
-| Docs, READMEs, tutorials, API references, code comments, commit messages, error messages, UI text | ASD-STE100 (Simplified Technical English) + shared house style |
-| Blog posts and marketing copy | Blog voice + shared house style |
+| Documentation, READMEs, tutorials, API references, code comments, commit messages, error messages, UI text | ASD-STE100 (Simplified Technical English) and shared house style |
+| Blog posts and marketing copy | Blog voice and shared house style |
 
 If you are not sure, use ASD-STE100.
 
 ## Technical content: ASD-STE100
 
-Use ASD-STE100 rules for all technical content. If a house style rule conflicts
-with an STE rule, use the STE rule.
+Use the ASD-STE100 Simplified Technical English (STE) rules for all technical
+content. If a house style rule conflicts with an STE rule, use the STE rule.
 
 For the full rules, examples, and a self-check, see [asd-ste100](references/asd-ste100.md).
 
@@ -79,10 +79,11 @@ but you can use the rules in this section.
 Remove all unnecessary words and phrases. You can abbreviate common jargon, for
 example docs, devs, apps, GenAI, and UX.
 
-### Talk dev
+### Write for developers
 
 Write like a developer for developers. Show that you know the problems and
-stress that developers have. Do not write down to the reader.
+stress that developers have. Do not write as if the reader knows less than
+you.
 
 ### Make it about the reader
 
@@ -162,7 +163,7 @@ Use sentence case without periods.
 
 Never use exclamation marks.
 
-## Red flags: stop and fix
+## Warning signs: stop and fix
 
 All content:
 
@@ -191,7 +192,7 @@ Technical content:
 
 | Mistake | Fix |
 |---------|-----|
-| Use the blog voice in technical docs | Use ASD-STE100 for all technical content. |
+| Use the blog voice in technical documentation | Use ASD-STE100 for all technical content. |
 | Abbreviate words in technical content | Write the full word. Define acronyms at first use. |
 | Use different terms for the same thing "for variety" | Use one term for one thing every time. |
 | Use the passive voice "for variety" | Use the active voice. |

@@ -6,12 +6,12 @@ metadata:
   tags: [control flow, switch, for-of, equality, iteration]
 ---
 
-# Control Flow
+# Control flow
 
-## Control flow statements & blocks
+## Control flow statements and blocks
 
-Control flow statements spanning multiple lines always use blocks for the
-containing code.
+If a control flow statement is on more than one line, always use a block for
+the contained code.
 
 ```ts
 // Good
@@ -30,14 +30,14 @@ if (x) x.doFoo();
 for (let i = 0; i < x; i++) doSomethingWithALongMethodName(i);
 ```
 
-The exception is that `if` statements fitting on one line may elide the block.
+Exception: if an `if` statement fits on one line, you can omit the block.
 
 ```ts
 // Good
 if (x) x.doFoo();
 ```
 
-## Switch Statements
+## Switch statements
 
 All `switch` statements must contain a `default` statement group, even if it
 contains no code.
@@ -49,25 +49,25 @@ switch (x) {
         doSomethingElse();
         break;
     default:
-    // nothing to do.
+    // Do nothing.
 }
 ```
 
-Non-empty statement groups (`case ...`) may not fall through (enforced by the
-compiler):
+Non-empty statement groups (`case ...`) must not fall through. The compiler
+enforces this rule:
 
 ```ts
 // Bad
 switch (x) {
     case X:
         doSomething();
-    // fall through — not allowed!
+    // fall through (not allowed)
     case Y:
     // ...
 }
 ```
 
-Empty statement groups are allowed to fall through:
+Empty statement groups can fall through:
 
 ```ts
 // Good
@@ -76,44 +76,45 @@ switch (x) {
     case Y:
         doSomething();
         break;
-    default: // nothing to do.
+    default: // Do nothing.
 }
 ```
 
-## Equality Checks
+## Equality checks
 
 Always use triple equals (`===`) and not equals (`!==`). The double equality
-operators cause error prone type coercions that are hard to understand and
-slower to implement for JavaScript VMs. See also the
+operators cause type coercions that are error-prone and hard to understand.
+These coercions are also slower for JavaScript virtual machines (VMs) to
+implement. For more information, refer to the
 [JavaScript equality table](https://dorey.github.io/JavaScript-Equality-Table/).
 
 ```ts
 // Bad
 if (foo == 'bar' || baz != bam) {
-    // Hard to understand behaviour due to type coercion.
+    // Type coercion makes this behaviour hard to understand.
 }
 ```
 
 ```ts
 // Good
 if (foo === 'bar' || baz !== bam) {
-    // All good here.
+    // This comparison is correct.
 }
 ```
 
-**Exception**: Comparisons to the literal `null` value may use the `==` and `!=`
-operators to cover both `null` and `undefined` values.
+**Exception**: Comparisons to the literal `null` value can use the `==` and `!=`
+operators. These operators match both `null` and `undefined` values.
 
 ```ts
 // Good
 if (foo == null) {
-    // Will trigger when foo is null or undefined.
+    // This block runs when foo is null or undefined.
 }
 ```
 
-## Iterating objects
+## Iterate over objects
 
-Iterating objects with `for (... in ...)` is error prone. It will include
+A `for (... in ...)` loop over an object is error-prone. The loop includes
 enumerable properties from the prototype chain.
 
 Do not use unfiltered `for (... in ...)` statements:
@@ -121,41 +122,41 @@ Do not use unfiltered `for (... in ...)` statements:
 ```ts
 // Bad
 for (const x in someObj) {
-    // x could come from some parent prototype!
+    // x can come from a parent prototype.
 }
 ```
 
-Either filter values explicitly with an `if` statement, or use
+Filter the values explicitly with an `if` statement, or use
 `for (... of Object.keys(...))`.
 
 ```ts
 // Good
 for (const x in someObj) {
     if (!someObj.hasOwnProperty(x)) continue;
-    // now x was definitely defined on someObj
+    // Now x is defined on someObj.
 }
 for (const x of Object.keys(someObj)) {
-    // note: for _of_!
+    // Note: this loop uses for _of_.
 }
 for (const [key, value] of Object.entries(someObj)) {
-    // note: for _of_!
+    // Note: this loop uses for _of_.
 }
 ```
 
-## Iterating containers
+## Iterate over containers
 
-Do not use `for (... in ...)` to iterate over arrays. It will counterintuitively
-give the array's indices (as strings!), not values:
+Do not use `for (... in ...)` to iterate over arrays. Unexpectedly, the loop
+gives the indices of the array as strings, not the values:
 
 ```ts
 // Bad
 for (const x in someArray) {
-    // x is the index!
+    // x is the index.
 }
 ```
 
-Use `for (... of someArr)` or vanilla `for` loops with indices to iterate over
-arrays.
+To iterate over arrays, use `for (... of someArr)` or standard `for` loops with
+indices.
 
 ```ts
 // Good
@@ -164,18 +165,18 @@ for (const x of someArr) {
 }
 
 for (let i = 0; i < someArr.length; i++) {
-    // Explicitly count if the index is needed, otherwise use the for/of form.
+    // If you need the index, count explicitly. Otherwise, use the for/of form.
     const x = someArr[i];
     // ...
 }
 for (const [i, x] of someArr.entries()) {
-    // Alternative version of the above.
+    // This is an alternative to the loop above.
 }
 ```
 
 Do not use `Array.prototype.forEach`, `Set.prototype.forEach`, and
-`Map.prototype.forEach`. They make code harder to debug and defeat some useful
-compiler checks (e.g. reachability).
+`Map.prototype.forEach`. They make code harder to debug. They also stop some
+useful compiler checks, for example reachability checks.
 
 ```ts
 // Bad
@@ -193,17 +194,17 @@ someArr.forEach((item, index) => {
 > });
 > ```
 >
-> You can recognize that this code is fine: `x` isn't null and it doesn't
-> change before it is accessed. But the compiler cannot know that this
-> `.forEach()` call doesn't hang on to the closure that was passed in and call
-> it at some later point, maybe after `x` was set to null, so it flags this
-> code as an error. The equivalent for-of loop is fine.
+> You can see that this code is correct. `x` is not null, and it does not
+> change before the code accesses it. But the compiler cannot know if this
+> `.forEach()` call keeps the closure and calls it later, maybe after `x`
+> becomes null. So the compiler flags this code as an error. The equivalent
+> for-of loop is correct.
 
-## Using the spread operator
+## The spread operator
 
-Using the spread operator `[...foo]; {...bar}` is a convenient shorthand for
-copying arrays and objects. When using the spread operator on objects, later
-values replace earlier values at the same key.
+The spread operator `[...foo]; {...bar}` is a convenient shorthand to copy
+arrays and objects. When you use the spread operator on objects, later values
+replace earlier values at the same key.
 
 ```ts
 // Good
@@ -225,17 +226,17 @@ foo2.num === 5;
 foo3.num === 1;
 ```
 
-When using the spread operator, the value being spread must match what is being
-created. That is, when creating an object, only objects may be used with the
-spread operator; when creating an array, only spread iterables. Primitives,
-including `null` and `undefined`, may never be spread.
+When you use the spread operator, the spread value must match the value that
+the code creates. When you create an object, spread only objects. When you
+create an array, spread only iterables. Never spread primitives, including
+`null` and `undefined`.
 
 ```ts
 // Bad
 const foo = { num: 7 };
-const bar = { num: 5, ...(shouldUseFoo && foo) }; // might be undefined
+const bar = { num: 5, ...(shouldUseFoo && foo) }; // This value can be undefined.
 
-// Creates {0: 'a', 1: 'b', 2: 'c'} but has no length
+// Creates {0: 'a', 1: 'b', 2: 'c'}, but the result has no length.
 const fooStrings = ['a', 'b', 'c'];
 const ids = { ...fooStrings };
 ```

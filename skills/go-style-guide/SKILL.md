@@ -1,7 +1,7 @@
 ---
 name: go-style-guide
 description: >-
-  Use when writing or reviewing Go code. Applies Google's Go style guidance for
+  Use when you write or review Go code. Applies Google's Go style guidance for
   readability, naming, formatting, packages, comments, errors, interfaces, and
   testing.
 metadata:
@@ -9,27 +9,28 @@ metadata:
   triggers: Go, golang, Go style, style guide, readability, idiomatic Go, code review
 ---
 
-# Go Style Guide
+# Go style guide
 
-Use this skill when Go code should follow Google's Go style documents. Treat the
-core guide as canonical, use style decisions for specific settled points, and
-use best practices for common patterns and tradeoffs. The overview also assumes
-familiarity with Effective Go, but this skill stays scoped to Google's style
-docs.
+Use this skill to make Go code follow Google's Go style documents. Treat the
+core guide as canonical. Use style decisions for specific settled points. Use
+best practices for common patterns and tradeoffs. The overview also expects
+that the reader knows Effective Go. But this skill covers only Google's style
+documentation.
 
 ## When to apply
 
-- Writing new Go code
-- Reviewing Go changes
-- Refactoring existing Go packages
-- Resolving style or readability questions in Go
+- Write new Go code.
+- Review Go changes.
+- Refactor Go packages that already exist.
+- Answer style or readability questions in Go.
 
 ## Source precedence
 
 - Follow `guide` first because it is canonical.
 - Use `decisions` for specific settled points and review terminology.
 - Use `best-practices` for common patterns, tradeoffs, and maintenance advice.
-- When the docs are silent, prefer local consistency within the file or package.
+- If the documentation does not give a rule, prefer local consistency in the
+  file or package.
 
 ## Rule index
 
@@ -41,6 +42,6 @@ docs.
 - [Interfaces](rules/interfaces.md)
 - [Testing](rules/testing.md)
 
-Paraphrase the guidance instead of copying large source passages. When no
+Paraphrase the guidance. Do not copy large passages from the source. If no
 explicit rule applies, keep recommendations consistent with nearby Go code and
 package-level conventions.

@@ -1,7 +1,7 @@
 ---
 description: >-
-  Rules for TypeScript class declarations including visibility, constructors,
-  properties, and member ordering.
+  Rules for TypeScript class declarations, including visibility, constructors,
+  properties, and member order.
 metadata:
   tags: [classes, visibility, constructors, properties, readonly]
 ---
@@ -10,23 +10,22 @@ metadata:
 
 ## Visibility
 
-Restricting visibility of properties, methods, and entire types helps with
-keeping code decoupled.
+Restricted visibility of properties, methods, and entire types helps to keep
+code decoupled.
 
 - Limit symbol visibility as much as possible.
-- Consider converting private methods to non-exported functions within the
-  same file but outside of any class, and moving private properties into a
-  separate, non-exported class.
-- TypeScript symbols are public by default. Never use the `public` modifier
-  except when declaring non-readonly public parameter properties (in
-  constructors).
+- Consider whether you can change private methods to non-exported functions
+  in the same file, outside of all classes. Also consider whether you can move
+  private properties into a separate, non-exported class.
+- TypeScript symbols are public by default. Never use the `public` modifier,
+  except to declare non-readonly public parameter properties in constructors.
 
 ```ts
 // Bad
 class Foo {
-    public bar = new Bar(); // public modifier not needed
+    public bar = new Bar(); // The public modifier is not necessary.
 
-    constructor(public readonly baz: Baz) {} // readonly implies it's a property which defaults to public
+    constructor(public readonly baz: Baz) {} // readonly makes it a property, and properties are public by default.
 }
 ```
 
@@ -35,13 +34,13 @@ class Foo {
 class Foo {
     bar = new Bar();
 
-    constructor(public baz: Baz) {} // public modifier allowed for non-readonly
+    constructor(public baz: Baz) {} // You can use the public modifier for non-readonly properties.
 }
 ```
 
 ## Constructors
 
-Constructor calls must use parentheses, even when no arguments are passed:
+Constructor calls must use parentheses, even when the call has no arguments:
 
 ```ts
 // Bad
@@ -53,11 +52,10 @@ const x = new Foo();
 const x = new Foo();
 ```
 
-It is unnecessary to provide an empty constructor or one that simply delegates
-into its parent class because ES2015 provides a default class constructor if one
-is not specified. However constructors with parameter properties, modifiers or
-parameter decorators should not be omitted even if the body of the constructor
-is empty.
+You do not need an empty constructor or a constructor that only calls its
+parent class. If a class has no constructor, ES2015 gives it a default class
+constructor. But do not omit constructors that have parameter properties,
+modifiers, or parameter decorators, even if the constructor body is empty.
 
 ```ts
 // Bad
@@ -112,19 +110,20 @@ class Clazz {
 }
 ```
 
-> Why? Private identifiers cause substantial emit size and performance
-> regressions when down-leveled by TypeScript, and are unsupported before
-> ES2015. They do not offer substantial benefits when static type checking is
-> used to enforce visibility.
+> Why? When TypeScript down-levels private identifiers, the emitted code
+> becomes much larger and slower. Versions before ES2015 do not support private
+> identifiers. They do not give substantial benefits when static type checking
+> enforces visibility.
 
 ## Use `readonly`
 
-Mark properties that are never reassigned outside of the constructor with the
-`readonly` modifier (these need not be deeply immutable).
+If the code never reassigns a property outside of the constructor, mark the
+property with the `readonly` modifier. These properties do not need to be
+deeply immutable.
 
 ## Parameter properties
 
-Rather than plumbing an obvious initializer through to a class member, use a
+Do not manually assign an obvious initializer to a class member. Use a
 TypeScript
 [parameter property](https://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties).
 
@@ -151,8 +150,8 @@ If the parameter property needs documentation,
 
 ## Field initializers
 
-If a class member is not a parameter, initialize it where it's declared, which
-sometimes lets you drop the constructor entirely.
+If a class member is not a parameter, initialize it where you declare it. Then
+you can sometimes remove the constructor completely.
 
 ```ts
 // Bad
@@ -173,19 +172,18 @@ class Foo {
 
 ## Properties used outside of class lexical scope
 
-Properties used from outside the lexical scope of their containing class, such
-as an Angular controller's properties used from a template, must not use
-`private` visibility, as they are used outside of the lexical scope of their
-containing class.
+Sometimes code outside the lexical scope of a class uses the properties of that
+class. For example, an Angular template uses the properties of its controller.
+These properties must not use `private` visibility.
 
-Use `public` or `protected` visibility as appropriate for your framework.
+Use the `public` or `protected` visibility that is correct for your framework.
 
-## Getters and Setters (Accessors)
+## Getters and setters (accessors)
 
-Getters and setters for class members may be used. The getter method must be a
-[pure function](https://en.wikipedia.org/wiki/Pure_function) (i.e., result is
-consistent and has no side effects). They are also useful as a means of
-restricting the visibility of internal or verbose implementation details.
+You can use getters and setters for class members. The getter method must be a
+[pure function](https://en.wikipedia.org/wiki/Pure_function). That is, its
+result is consistent and it has no side effects. Accessors are also useful to
+restrict the visibility of internal or verbose implementation details.
 
 ```ts
 // Good
@@ -202,16 +200,18 @@ class Foo {
 }
 ```
 
-If an accessor is used to hide a class property, the hidden property may be
-prefixed or suffixed with any whole word, like `internal` or `wrapped`. When
-using these private properties, access the value through the accessor whenever
-possible. At least one accessor for a property must be non-trivial: do not
-define "pass-through" accessors only for the purpose of hiding a property.
-Instead, make the property public (or consider making it `readonly` rather than
-just defining a getter with no setter).
+If an accessor hides a class property, you can add any whole word as a prefix
+or suffix to the name of the hidden property. For example, use `internal` or
+`wrapped`. When you use these private properties, access the value through the
+accessor whenever possible.
+
+At least one accessor for a property must be non-trivial. Do not define
+"pass-through" accessors only to hide a property. Instead, make the property
+public. Or consider whether to make it `readonly`, instead of a getter with no
+setter.
 
 ```ts
-// Good — non-trivial logic in the accessors
+// Good: the accessors contain non-trivial logic.
 class Foo {
     private wrappedBar = '';
     get bar() {
@@ -225,7 +225,7 @@ class Foo {
 ```
 
 ```ts
-// Bad — neither accessor has logic, so just make bar public.
+// Bad: neither accessor has logic. Make bar public instead.
 class Bar {
     private barInternal = '';
     get bar() {
@@ -251,8 +251,8 @@ interface Foo {
 }
 ```
 
-Interfaces specifically must not use the `,` character to separate fields, for
-symmetry with class declarations:
+Interfaces must not use the `,` character to separate fields. This keeps them
+symmetrical with class declarations:
 
 ```ts
 // Bad

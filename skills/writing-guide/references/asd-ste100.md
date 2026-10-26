@@ -1,7 +1,7 @@
 ---
 description: >-
-    ASD-STE100 Simplified Technical English rules, adapted for software docs,
-    READMEs, tutorials, and code comments.
+    ASD-STE100 Simplified Technical English rules, adapted for software
+    documentation, READMEs, tutorials, and code comments.
 metadata:
     tags: [ste, asd-ste100, simplified-technical-english, docs, technical-writing]
 ---
@@ -13,8 +13,8 @@ has writing rules and a dictionary of approved words. Use these rules for all
 technical content.
 
 This file is a summary. It does not replace the official specification. For the
-full dictionary, get the specification from the ASD-STE100 website
-(https://www.asd-ste100.org).
+full dictionary, get the specification from the
+[ASD-STE100 website](https://www.asd-ste100.org).
 
 ## 1. Words
 

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Naming rules for TypeScript identifiers including classes, variables,
+  Naming rules for TypeScript identifiers, including classes, variables,
   functions, and constants.
 metadata:
   tags: [naming, identifiers, camelCase, conventions]
@@ -9,56 +9,56 @@ metadata:
 # Identifiers
 
 Identifiers must use only ASCII letters, digits, underscores (for constants and
-structured test method names), and the `$` sign. Thus each valid identifier name
-is matched by the regular expression `[$\w]+`.
+structured test method names), and the `$` sign. Thus the regular expression
+`[$\w]+` matches each valid identifier name.
 
 | Style            | Category                                                           |
 | ---------------- | ------------------------------------------------------------------ |
 | `UpperCamelCase` | class / interface / type / enum / decorator / type parameters      |
 | `lowerCamelCase` | variable / parameter / function / method / property / module alias |
 | `CONSTANT_CASE`  | global constant values, including enum values                      |
-| `#ident`         | private identifiers are never used.                                |
+| `#ident`         | private identifiers (never use)                                    |
 
-- **Abbreviations**: Treat abbreviations like acronyms in names as whole words,
-  i.e. use `loadHttpUrl`, not ~~`loadHTTPURL`~~, unless required by a platform
-  name (e.g. `XMLHttpRequest`).
+- **Abbreviations**: In names, treat abbreviations such as acronyms as whole
+  words. For example, use `loadHttpUrl`, not ~~`loadHTTPURL`~~. The exception
+  is a platform name that requires a different form (for example
+  `XMLHttpRequest`).
 
-- **Dollar sign**: Identifiers _should not_ generally use `$`, except when
-  aligning with naming conventions for third party frameworks.
-  See [naming style](#naming-style) for more on using `$` with `Observable`
-  values.
+- **Dollar sign**: Identifiers _should not_ usually use `$`. The exception is
+  when you align with the naming conventions of third-party frameworks. Refer
+  to [naming style](#naming-style) for more about `$` with `Observable` values.
 
-- **Type parameters**: Type parameters, like in `Array<T>`, may use a single
-  upper case character (`T`) or `UpperCamelCase`.
+- **Type parameters**: Type parameters, as in `Array<T>`, can use a single
+  uppercase character (`T`) or `UpperCamelCase`.
 
-- **Test names**: Test method names in xUnit-style test frameworks may be
-  structured with `_` separators, e.g. `testX_whenY_doesZ()`.
+- **Test names**: Test method names in xUnit-style test frameworks can use `_`
+  separators to show structure, for example `testX_whenY_doesZ()`.
 
 - **`_` prefix/suffix**: Identifiers must not use `_` as a prefix or suffix.
 
-    This also means that `_` must not be used as an identifier by itself (e.g.
-    to indicate a parameter is unused).
+    Thus, do not use `_` as an identifier by itself (for example, to show that
+    a parameter is unused).
 
-> Tip: If you only need some of the elements from an array (or TypeScript
-> tuple), you can insert extra commas in a destructuring statement to ignore
-> in-between elements:
+> Tip: If you need only some of the elements from an array (or TypeScript
+> tuple), you can add extra commas in a destructuring statement. The extra
+> commas skip the elements between them:
 >
 > ```ts
 > const [a, , b] = [1, 5, 10]; // a <- 1, b <- 10
 > ```
 
-- **Imports**: Module namespace imports are `lowerCamelCase` while files are
-  `snake_case`, which means that imports correctly will not match in casing
-  style, such as
+- **Imports**: Module namespace imports use `lowerCamelCase`, but files use
+  `snake_case`. Thus, correct imports do not match the case style of the file
+  name. For example:
 
     ```ts
     import * as fooBar from './foo_bar';
     ```
 
-- **Constants**: `CONSTANT_CASE` indicates that a value is _intended_ to not
-  be changed, and may be used for values that can technically be modified
-  (i.e. values that are not deeply frozen) to indicate to users that they must
-  not be modified.
+- **Constants**: `CONSTANT_CASE` shows that the value is _intended_ not to
+  change. You can use it for values that code can technically change (that
+  is, values that are not deeply frozen). It tells users that they must not
+  change the value.
 
     ```ts
     const UNIT_SUFFIXES = {
@@ -79,15 +79,16 @@ is matched by the regular expression `[$\w]+`.
     }
     ```
 
-    If a value can be instantiated more than once over the lifetime of the
-    program, or if users mutate it in any way, it must use `lowerCamelCase`.
+    If the program can create a value more than one time during its lifetime,
+    the value must use `lowerCamelCase`. If users change the value in any way,
+    the value must also use `lowerCamelCase`.
 
-    If a value is an arrow function that implements an interface, then it can be
-    declared `lowerCamelCase`.
+    If a value is an arrow function that implements an interface, you can
+    declare it in `lowerCamelCase`.
 
-- **React Components**: When required by JSX, components must be
-  `UpperCamelCase` no matter how the component is implemented (e.g. function,
-  ES6 class, `React.createClass`).
+- **React components**: If JSX requires it, components must use
+  `UpperCamelCase`. This rule applies to all forms of component (for example a
+  function, an ES6 class, or `React.createClass`).
 
     ```ts
     // Good
@@ -101,8 +102,8 @@ is matched by the regular expression `[$\w]+`.
     ```
 
     ```ts
-    // Bad — lowercased functions cannot be used as JSX elements because the
-    // transpiler cannot distinguish them from HTML tags.
+    // Bad: You cannot use lowercase functions as JSX elements. The
+    // transpiler cannot tell them apart from HTML tags.
     function goLink(props: GoLinkProps) {
       return <a href={...}>...</a>;
     }
@@ -110,10 +111,10 @@ is matched by the regular expression `[$\w]+`.
 
 ## Aliases
 
-When creating a local-scope alias of an existing symbol, use the format of the
-existing identifier. The local alias must match the existing naming and format
-of the source. For variables use `const` for your local aliases, and for class
-fields use the `readonly` attribute.
+When you make a local-scope alias of an existing symbol, use the format of the
+existing identifier. The local alias must match the naming and format of the
+source. For variables, use `const` for your local aliases. For class fields,
+use the `readonly` attribute.
 
 ```ts
 const { Foo } = SomeType;
@@ -127,30 +128,29 @@ class Teapot {
 
 ## Naming style
 
-TypeScript expresses information in types, so names _should not_ be decorated
-with information that is included in the type.
+TypeScript shows information in types. Thus, names _should not_ repeat
+information that the type already gives.
 
-Some concrete examples of this rule:
+Some specific examples of this rule:
 
 - Do not use trailing or leading underscores for private properties or methods.
 - Do not use the `opt_` prefix for optional parameters.
-- Do not mark interfaces specially (~~`IMyInterface`~~ or
-  ~~`MyFooInterface`~~) unless it's idiomatic in its environment. When
-  introducing an interface for a class, give it a name that expresses why the
-  interface exists in the first place (e.g. `class TodoItem` and
-  `interface TodoItemStorage` if the interface expresses the format used for
-  storage/serialization in JSON).
-- Suffixing `Observable`s with `$` is a common external convention and can
-  help resolve confusion regarding observable values vs concrete values.
-  Judgement on whether this is a useful convention is left up to individual
-  teams, but _should_ be consistent within projects.
+- Do not give interfaces a special mark (~~`IMyInterface`~~ or
+  ~~`MyFooInterface`~~), unless it is the usual style in its environment. When
+  you add an interface for a class, give it a name that tells why the interface
+  exists. For example, use `class TodoItem` and `interface TodoItemStorage` if
+  the interface gives the format for storage or serialization in JSON.
+- A `$` suffix on `Observable`s is a common external convention. It can help
+  show the difference between observable values and concrete values. Each team
+  decides if this convention is useful, but it _should_ be consistent in each
+  project.
 
 ## Descriptive names
 
 Names _must_ be descriptive and clear to a new reader. Do not use abbreviations
-that are ambiguous or unfamiliar to readers outside your project, and do not
-abbreviate by deleting letters within a word.
+that are ambiguous or unfamiliar to readers outside your project. Do not
+remove letters from a word to abbreviate it.
 
-- **Exception**: Variables that are in scope for 10 lines or fewer, including
-  arguments that are _not_ part of an exported API, _may_ use short (e.g.
-  single letter) variable names.
+- **Exception**: Variables that are in scope for 10 lines or fewer _can_ use
+  short (for example, single-letter) names. This includes arguments that are
+  _not_ part of an exported API.

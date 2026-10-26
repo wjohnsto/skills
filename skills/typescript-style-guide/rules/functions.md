@@ -8,18 +8,18 @@ metadata:
 
 # Functions
 
-## Function Declarations
+## Function declarations
 
 Use `function foo() { ... }` to declare named functions, including functions in
-nested scopes, e.g. within another function.
+nested scopes, for example in another function.
 
-Use function declarations instead of assigning a function expression into a
-local variable (~~`const x = function() {...};`~~). TypeScript already disallows
-rebinding functions, so preventing overwriting a function declaration by using
-`const` is unnecessary.
+Use function declarations instead of function expressions that you assign to a
+local variable (~~`const x = function() {...};`~~). TypeScript already does not
+let code rebind functions. So you do not need `const` to prevent overwrites of a
+function declaration.
 
-Exception: Use arrow functions assigned to variables instead of function
-declarations if the function accesses the outer scope's `this`.
+Exception: If the function accesses the `this` of the outer scope, assign an
+arrow function to a variable. Do not use a function declaration.
 
 ```ts
 // Good
@@ -28,14 +28,14 @@ function foo() { ... }
 
 ```ts
 // Bad
-// Given the above declaration, this won't compile:
+// With the declaration above, this code does not compile:
 foo = () => 3;  // ERROR: Invalid left-hand side of assignment expression.
 
 // So declarations like this are unnecessary.
 const foo = function() { ... }
 ```
 
-Top level arrow functions _may_ be used to explicitly declare that a function
+You _can_ use top-level arrow functions to explicitly declare that a function
 implements an interface.
 
 ```ts
@@ -64,50 +64,49 @@ bar(() => {
 bar(function() { ... })
 ```
 
-Function expressions (defined with the `function` keyword) may only be used if
-code has to dynamically rebind the `this` pointer, but code _should not_ rebind
-the `this` pointer in general. Code in regular functions (as opposed to arrow
-functions and methods) _should not_ access `this`.
+Use function expressions (with the `function` keyword) only if code must
+dynamically rebind the `this` pointer. But in general, code _should not_ rebind
+the `this` pointer. Code in regular functions (not arrow functions or methods)
+_should not_ access `this`.
 
-## Expression bodies vs block bodies
+## Expression bodies and block bodies
 
-Use arrow functions with expressions or blocks as their body as appropriate.
+Use arrow functions with an expression or a block as their body, as appropriate.
 
 ```ts
 // Good
 function someFunction() {
-    // Block arrow function bodies, i.e. bodies with => { }, are fine:
+    // Block bodies for arrow functions (bodies with => { }) are correct:
     const receipts = books.map((b: Book) => {
         const receipt = payMoney(b.price);
         recordTransaction(receipt);
         return receipt;
     });
 
-    // Expression bodies are fine, too, if the return value is used:
+    // Expression bodies are also correct if the code uses the return value:
     const longThings = myValues
         .filter((v) => v.length > 1000)
         .map((v) => String(v));
 
     function payMoney(amount: number) {
-        // function declarations are fine, but don't access `this` in them.
+        // Function declarations are correct, but do not access `this` in them.
     }
 }
 ```
 
-Only use an expression body if the return value of the function is actually
-used.
+Use an expression body only if the code uses the return value of the function.
 
 ```ts
-// Bad — use a block ({ ... }) if the return value of the function is not used.
+// Bad: if the code does not use the return value of the function, use a block ({ ... }).
 myPromise.then((v) => console.log(v));
 ```
 
 ```ts
-// Good — return value is unused, use a block body.
+// Good: the code does not use the return value, so use a block body.
 myPromise.then((v) => {
     console.log(v);
 });
-// Good — code may use blocks for readability.
+// Good: code can use blocks to make it easier to read.
 const transformed = [1, 2, 3].map((v) => {
     const intermediate = someComplicatedExpr(v);
     const more = acrossManyLines(intermediate);
@@ -115,28 +114,28 @@ const transformed = [1, 2, 3].map((v) => {
 });
 ```
 
-## Rebinding `this`
+## Function expressions and `this`
 
 Function expressions must not use `this` unless they specifically exist to
-rebind the `this` pointer. Rebinding `this` can in most cases be avoided by
-using arrow functions or explicit parameters.
+rebind the `this` pointer. In most cases, use arrow functions or explicit
+parameters so that you do not need to rebind `this`.
 
 ```ts
 // Bad
 function clickHandler() {
-    // What's `this` in this context?
+    // What is `this` in this context?
     this.textContent = 'Hello';
 }
-// The `this` pointer reference is implicitly set to document.body.
+// The browser implicitly sets the `this` pointer reference to document.body.
 document.body.onclick = clickHandler;
 ```
 
 ```ts
-// Good — explicitly reference the object from an arrow function.
+// Good: explicitly reference the object from an arrow function.
 document.body.onclick = () => {
     document.body.textContent = 'hello';
 };
-// Alternatively: take an explicit parameter
+// Alternatively, take an explicit parameter.
 const setTextFn = (e: HTMLElement) => {
     e.textContent = 'hello';
 };
@@ -146,22 +145,23 @@ document.body.onclick = setTextFn.bind(null, document.body);
 ## Arrow functions as properties
 
 Classes usually _should not_ contain properties initialized to arrow functions.
-Arrow function properties require the calling function to understand that the
-callee's `this` is already bound, which increases confusion about what `this`
-is, and call sites and references using such handlers look broken (i.e. require
-non-local knowledge to determine that they are correct). Code _should_ always
-use arrow functions to call instance methods
-(`const handler = (x) => { this.listener(x); };`), and _should not_ obtain or
+With arrow function properties, the calling function must know that the `this`
+of the callee is already bound. This increases confusion about what `this` is.
+Also, call sites and references that use such handlers look incorrect. That is,
+the reader needs non-local knowledge to know that they are correct.
+
+Code _should_ always use arrow functions to call instance methods
+(`const handler = (x) => { this.listener(x); };`). Code _should not_ get or
 pass references to instance methods
 (~~`const handler = this.listener; handler(x);`~~).
 
-> Note: in some specific situations, e.g. when binding functions in a template,
-> arrow functions as properties are useful and create much more readable code.
-> Use judgement with this rule. Also, see the
-> [Event Handlers](#event-handlers) section below.
+> Note: In some specific situations, arrow functions as properties are useful
+> and make code much easier to read. An example is when you bind functions in a
+> template. Use judgement with this rule. Also, refer to the
+> [Event handlers](#event-handlers) section below.
 
 ```ts
-// Bad — `this` is not preserved in the callback.
+// Bad: the callback does not keep `this`.
 class DelayHandler {
     constructor() {
         setTimeout(this.patienceTracker, 5000);
@@ -173,7 +173,7 @@ class DelayHandler {
 ```
 
 ```ts
-// Bad — arrow functions usually should not be properties.
+// Bad: arrow functions usually should not be properties.
 class DelayHandler {
     constructor() {
         // This code looks like it forgot to bind `this`.
@@ -186,7 +186,7 @@ class DelayHandler {
 ```
 
 ```ts
-// Good — explicitly manage `this` at call time.
+// Good: explicitly manage `this` at call time.
 class DelayHandler {
     constructor() {
         setTimeout(() => {
@@ -199,23 +199,22 @@ class DelayHandler {
 }
 ```
 
-## Event Handlers
+## Event handlers
 
-Event handlers _may_ use arrow functions when there is no need to uninstall the
-handler (for example, if the event is emitted by the class itself). If the
-handler must be uninstalled, arrow function properties are the right approach,
-because they automatically capture `this` and provide a stable reference to
-uninstall.
+Event handlers _can_ use arrow functions when you do not need to uninstall the
+handler. For example, you do not need to uninstall it if the class itself emits
+the event. If you must uninstall the handler, use arrow function properties.
+They automatically capture `this` and give a stable reference to uninstall.
 
 ```ts
-// Good — event handlers may be anonymous functions or arrow function properties.
+// Good: event handlers can be anonymous functions or arrow function properties.
 class Component {
     onAttached() {
-        // The event is emitted by this class, no need to uninstall.
+        // This class emits the event, so you do not need to uninstall the handler.
         this.addEventListener('click', () => {
             this.listener();
         });
-        // this.listener is a stable reference, we can uninstall it later.
+        // this.listener is a stable reference, so you can uninstall it later.
         window.addEventListener('onbeforeunload', this.listener);
     }
     onDetached() {
@@ -228,11 +227,11 @@ class Component {
 }
 ```
 
-Do not use `bind` in the expression that installs an event handler, because it
-creates a temporary reference that can't be uninstalled.
+Do not use `bind` in the expression that installs an event handler. The `bind`
+call creates a temporary reference that you cannot uninstall.
 
 ```ts
-// Bad — binding listeners creates a temporary reference that prevents uninstalling.
+// Bad: a bound listener is a temporary reference that you cannot uninstall.
 class Component {
     onAttached() {
         window.addEventListener('onbeforeunload', this.listener.bind(this));

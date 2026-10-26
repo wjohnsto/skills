@@ -1,6 +1,6 @@
 ---
 description: >-
-  Interface design guidance from Google's Go best practices, including
+  Interface design guidance from Google's Go best practices. It covers
   ownership, size, documentation, and return-type choices.
 ---
 
@@ -8,36 +8,39 @@ description: >-
 
 ## When to introduce one
 
-- **Best practice**: Avoid creating an interface before a real need exists.
-- Reuse an existing interface when one already models the needed behavior.
-- Do not add a test-only interface or exported test double unless there is a
-  material need for substitution.
+- **Best practice**: Avoid new interfaces until a real need exists.
+- If an interface already models the needed behavior, reuse it.
+- Do not add a test-only interface or exported test double unless a real need
+  for substitution exists.
 
 ## Ownership and visibility
 
-- **Best practice**: The consumer usually defines the interface because it knows
-  the minimal behavior it needs.
+- **Best practice**: The consumer usually defines the interface because it
+  knows the minimal behavior it needs.
 - Keep internal-only interfaces unexported.
-- Producer-owned interfaces make sense when the interface itself is the product,
-  the boundary is shared broadly, or a standalone contract package is justified.
+- Producer-owned interfaces are acceptable in three cases: the interface itself
+  is the product, many packages share the boundary, or a standalone contract
+  package is justified.
 
 ## Size and documentation
 
 - Keep interfaces small and composable.
 - Treat interface documentation as a user manual for the abstraction.
-- Single-method interfaces still need their contract documented.
+- Single-method interfaces also need documentation for their contract.
 - Multi-method interfaces need method-level documentation.
 
-## Accept vs return
+## Accept versus return
 
 - **Best practice**: Accept interfaces and return concrete types.
-- Returning a concrete type keeps the full API available to the caller.
-- Returning an interface is reasonable for cases such as encapsulation or when
-  the interface itself is the stable boundary, as with `error`.
+- A concrete return type keeps the full API available to the caller.
+- An interface return type is reasonable in some cases, for example
+  encapsulation. It is also reasonable when the interface itself is the stable
+  boundary, as with `error`.
 
 ## Review heuristics
 
-- Ask whether the interface removes more information than it saves.
-- Watch for interface bloat caused by mirroring large concrete APIs.
-- Treat interfaces added only to make tests easier as a design smell until a
-  real substitution need is clear.
+- Ask if the interface removes more information than it saves.
+- Look for interfaces that become too large because they copy large concrete
+  APIs.
+- If you add an interface only to make tests easier, treat it as a possible
+  design problem. Keep this view until a real need for substitution is clear.

@@ -1,12 +1,12 @@
 ---
-description: Ready-to-paste CSS custom properties for dark theme scaffolding.
+description: CSS custom properties for the dark theme that you can copy into a project.
 metadata:
   tags: [theme, css, custom-properties, dark, scaffold]
 ---
 
-# Theme Setup
+# Theme setup
 
-Set `color-scheme: dark` on `:root` and define all tokens in one place.
+Set `color-scheme: dark` on `:root`. Define all tokens in one place:
 
 ```css
 :root {

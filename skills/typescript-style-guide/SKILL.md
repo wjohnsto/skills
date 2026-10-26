@@ -1,7 +1,7 @@
 ---
 name: typescript-style-guide
 description: >-
-    Use when writing or reviewing TypeScript code.
+    Use when you write or review TypeScript code.
 license: MIT
 metadata:
     author: redis
@@ -10,17 +10,17 @@ metadata:
     triggers: TypeScript, TS, naming, imports, types, style, code review
 ---
 
-# TypeScript Style Guide
+# TypeScript style guide
 
-Rules and best practices for writing TypeScript. Each section links to
-a detailed rule file with full code examples.
+This guide gives rules and best practices for TypeScript code. Each section
+links to a detailed rule file with full code examples.
 
-## When to Use This Skill
+## When to use this skill
 
-- Writing new TypeScript code
-- Reviewing TypeScript pull requests
-- Refactoring existing TypeScript code
-- Setting up a new TypeScript project
+- Write new TypeScript code.
+- Review TypeScript pull requests.
+- Refactor existing TypeScript code.
+- Set up a new TypeScript project.
 
 ## Syntax
 
@@ -34,118 +34,122 @@ a detailed rule file with full code examples.
 
 Key rules:
 
-- Treat abbreviations as whole words: `loadHttpUrl`, not ~~`loadHTTPURL`~~
-- Do not use `_` as a prefix or suffix
-- Do not use `#private` fields; use TypeScript's `private` keyword
-- React components must be `UpperCamelCase`
-- Do not decorate names with type info (no `IMyInterface`, no `opt_` prefix)
-- Names must be descriptive and clear to new readers
+- Treat abbreviations as whole words: `loadHttpUrl`, not ~~`loadHTTPURL`~~.
+- Do not use `_` as a prefix or suffix.
+- Do not use `#private` fields. Use the TypeScript `private` keyword.
+- React component names must use `UpperCamelCase`.
+- Do not add type information to names. For example, do not use
+  `IMyInterface` or an `opt_` prefix.
+- Names must be descriptive and clear to new readers.
 
-### [Comments & Documentation](rules/comments-and-documentation.md)
+### [Comments and documentation](rules/comments-and-documentation.md)
 
-- Use `/** JSDoc */` for documentation (user-facing)
-- Use `// line comments` for implementation notes
-- Document all top-level exports
-- Omit comments redundant with TypeScript types (no `@param` types, no `@implements`)
-- Do not use `@override`
-- Place JSDoc before decorators, not between decorator and declaration
-- Make comments add information; don't just restate parameter names
-- Use UTF-8 encoding; use actual Unicode characters for non-ASCII
+- Use `/** JSDoc */` for documentation that the users of the code read.
+- Use `// line comments` for implementation notes.
+- Document all top-level exports.
+- Omit comments that repeat the TypeScript types. For example, do not add
+  types to `@param` and do not write `@implements`.
+- Do not use `@override`.
+- Put JSDoc before decorators, not between a decorator and its declaration.
+- Make comments add information. Do not only repeat parameter names.
+- Use UTF-8 encoding. Use the actual Unicode character for non-ASCII
+  characters.
 
-## Language Rules
+## Language rules
 
 ### [Classes](rules/classes.md)
 
-- Limit symbol visibility as much as possible
-- Never use the `public` modifier except for non-readonly public parameter properties
-- Always use parentheses in constructor calls: `new Foo()`, not `new Foo`
-- Don't write empty constructors or constructors that just call `super()`
-- Use `readonly` for properties never reassigned outside the constructor
-- Use parameter properties instead of manual assignment
-- Initialize fields where they're declared when possible
-- Use semicolons (not commas) in interface/class member declarations
+- Limit symbol visibility as much as possible.
+- Never use the `public` modifier, except for non-readonly public parameter properties.
+- Always use parentheses in constructor calls: `new Foo()`, not `new Foo`.
+- Do not write empty constructors or constructors that only call `super()`.
+- Use `readonly` for properties that the code never reassigns outside the constructor.
+- Use parameter properties instead of manual assignment.
+- When possible, initialize fields where you declare them.
+- Use semicolons, not commas, in interface and class member declarations.
 
 ### [Functions](rules/functions.md)
 
-- Use `function foo() {}` declarations for named functions
-- Use arrow functions in expressions (callbacks, etc.)
-- Only use expression body (`=>` without braces) when the return value is used
-- Do not use `this` in regular functions; use arrow functions or explicit params
-- Prefer wrapping instance method calls in arrow functions over arrow function properties
+- Use `function foo() {}` declarations for named functions.
+- Use arrow functions in expressions, for example in callbacks.
+- Use an expression body (`=>` without braces) only when the code uses the return value.
+- Do not use `this` in regular functions. Use arrow functions or explicit parameters.
+- Prefer arrow functions that wrap instance method calls to arrow function properties.
 
-### [Variables & Primitives](rules/variables-and-primitives.md)
+### [Variables and primitives](rules/variables-and-primitives.md)
 
-- Always use `const` or `let`, never `var`
-- Use `const` by default; `let` only when reassignment is needed
-- Always use `new Error()` (not bare `Error()`) for exceptions
-- Do not instantiate wrapper classes (`new String()`, `new Boolean()`, `new Number()`)
-- Do not use `Array()` constructor; use bracket notation or `Array.from()`
-- Use `Number()` for parsing; always check for `NaN`
-- Do not use unary `+` or `parseInt`/`parseFloat` (except for non-base-10)
-- Do not rely on Automatic Semicolon Insertion; always use semicolons
-- Always use `enum`, not `const enum`
-- No `debugger` statements in production code
-- Do not define new decorators; only use framework-provided ones
+- Always use `const` or `let`. Never use `var`.
+- Use `const` by default. Use `let` only when you must reassign the variable.
+- Always use `new Error()` for exceptions, not `Error()` without `new`.
+- Do not instantiate wrapper classes (`new String()`, `new Boolean()`, `new Number()`).
+- Do not use the `Array()` constructor. Use bracket notation or `Array.from()`.
+- Use `Number()` to parse numbers. Always check for `NaN`.
+- Do not use unary `+` or `parseInt`/`parseFloat` (except for numbers that are not base 10).
+- Do not rely on Automatic Semicolon Insertion. Always use semicolons.
+- Always use `enum`, not `const enum`.
+- Do not use `debugger` statements in production code.
+- Do not define new decorators. Use only the decorators that a framework provides.
 
-### [Control Flow](rules/control-flow.md)
+### [Control flow](rules/control-flow.md)
 
-- Multi-line control flow must use blocks `{ }`
-- All `switch` statements must have a `default` case
-- Always use `===` and `!==` (exception: `== null` to check both null/undefined)
-- Use `for...of` or `Object.keys()`/`Object.entries()` instead of `for...in`
-- Do not use `.forEach()`; use `for...of` loops
-- Only spread matching types (objects into objects, iterables into arrays)
+- Control flow statements on more than one line must use blocks (`{ }`).
+- All `switch` statements must have a `default` case.
+- Always use `===` and `!==`. Exception: you can use `== null` to check for both `null` and `undefined`.
+- Use `for...of` or `Object.keys()`/`Object.entries()` instead of `for...in`.
+- Do not use `.forEach()`. Use `for...of` loops.
+- Spread only matching types (objects into objects, iterables into arrays).
 
-### [Type Safety](rules/type-safety.md)
+### [Type safety](rules/type-safety.md)
 
-- Do not use `@ts-ignore`
-- Prefer runtime checks (`instanceof`, truthiness) over type assertions
-- When assertions are necessary, use `as` syntax (not angle brackets)
-- Use type annotations (`: Foo`) on object literals, not assertions (`as Foo`)
-- Do not mix quoted and dotted property access
+- Do not use `@ts-ignore`.
+- Prefer runtime checks (`instanceof`, truthiness) to type assertions.
+- If you must use an assertion, use the `as` syntax, not angle brackets.
+- Use type annotations (`: Foo`) on object literals, not assertions (`as Foo`).
+- Do not mix quoted and dotted property access.
 
-## Source Organization
+## Source organization
 
-### [Modules & Imports](rules/modules-and-imports.md)
+### [Modules and imports](rules/modules-and-imports.md)
 
-- Use relative imports (`./foo`) within the same project
-- Do not use `namespace`; use ES6 modules
-- Do not use `require()`; use ES6 `import`
-- Use `import type` / `export type` for type-only imports/exports
+- Use relative imports (`./foo`) in the same project.
+- Do not use `namespace`. Use ES6 modules.
+- Do not use `require()`. Use ES6 `import`.
+- Use `import type` and `export type` for type-only imports and exports.
 
-| Import type   | Example                      | Use for                                           |
-| ------------- | ---------------------------- | ------------------------------------------------- |
-| module        | `import * as foo from '...'` | Large APIs where namespacing improves readability |
-| destructuring | `import { Foo } from '...'`  | Commonly used symbols                             |
-| default       | `import Foo from '...'`      | Only for external code that requires it           |
-| side-effect   | `import '...'`               | Libraries loaded for side effects only            |
+| Import type   | Example                      | Use for                                                |
+| ------------- | ---------------------------- | ------------------------------------------------------ |
+| module        | `import * as foo from '...'` | Large APIs where a namespace makes code easier to read |
+| destructuring | `import { Foo } from '...'`  | Commonly used symbols                                  |
+| default       | `import Foo from '...'`      | Only for external code that requires it                |
+| side-effect   | `import '...'`               | Libraries loaded for side effects only                 |
 
 ### [Exports](rules/exports.md)
 
-- Use named exports; do not use default exports
-- Minimize the exported API surface
-- Do not use `export let` (mutable exports)
-- Do not create container classes with only static members; export functions/constants directly
-- Organize packages by feature, not by type
+- Use named exports. Do not use default exports.
+- Minimize the exported API surface.
+- Do not use `export let` (mutable exports).
+- Do not create container classes with only static members. Export functions and constants directly.
+- Organize packages by feature, not by type.
 
-## Type System
+## Type system
 
-### [Type System Rules](rules/type-system.md)
+### [Type system rules](rules/type-system.md)
 
-- Rely on inference for trivially inferred types (`string`, `number`, `boolean`, `new` expressions)
-- Add annotations when they improve readability or catch refactoring bugs
-- Return type annotations are optional but can improve documentation
-- Use optional fields/params (`?`) rather than `| undefined`
-- Do not include `| null` or `| undefined` in type aliases
-- Use `interface` for object shapes; `type` for unions, tuples, primitives
-- Use `T[]` for simple types; `Array<T>` for complex types (unions, objects)
-- Avoid `any`; prefer specific types, `unknown`, or documented suppression
-- Use `Record<K, V>` or `Map`/`Set` over plain objects as associative arrays
-- Never use wrapper types (`String`, `Boolean`, `Number`, `Object`)
-- Avoid return-type-only generics
-- Prefer simple types over complex mapped/conditional types when possible
+- Use inference for types that are easy to infer (`string`, `number`, `boolean`, `new` expressions).
+- Add annotations when they make code easier to read or help find bugs after a refactor.
+- Return type annotations are optional, but they can improve documentation.
+- Use optional fields and parameters (`?`) instead of `| undefined`.
+- Do not include `| null` or `| undefined` in type aliases.
+- Use `interface` for object shapes. Use `type` for unions, tuples, and primitives.
+- Use `T[]` for simple types. Use `Array<T>` for complex types (unions, objects).
+- Avoid `any`. Prefer specific types, `unknown`, or a documented suppression.
+- Use `Record<K, V>` or `Map`/`Set` instead of plain objects as associative arrays.
+- Never use wrapper types (`String`, `Boolean`, `Number`, `Object`).
+- Avoid generics that only the return type uses.
+- When possible, prefer simple types to complex mapped or conditional types.
 
 ## Consistency
 
-For any style question not covered here, follow the conventions already in the
-file, then the directory, then the project.
+If this guide does not answer a style question, follow the conventions in the
+file first. Then follow the conventions in the directory, and then in the
+project.

@@ -1,40 +1,40 @@
 ---
 description: >-
-  Rules for variable declarations, const/let usage, error handling, enums,
-  and primitive type usage in TypeScript.
+  Rules for variable declarations, const/let, error handling, enums,
+  and primitive types in TypeScript.
 metadata:
   tags: [variables, const, let, enums, primitives, errors]
 ---
 
-# Variables & Primitives
+# Variables and primitives
 
 ## Variables
 
 Always use `const` or `let` to declare variables. Use `const` by default, unless
-a variable needs to be reassigned. Never use `var`.
+you must assign a new value to the variable. Never use `var`.
 
 ```ts
 // Good
 const foo = otherValue; // Use if "foo" never changes.
-let bar = someValue; // Use if "bar" is ever assigned into later on.
+let bar = someValue; // Use if code assigns a new value to "bar" later.
 ```
 
-`const` and `let` are block scoped, like variables in most other languages.
-`var` in JavaScript is function scoped, which can cause difficult to understand
-bugs. Don't use it.
+`const` and `let` are block scoped, as are variables in most other languages.
+`var` in JavaScript is function scoped. This can cause bugs that are difficult
+to understand. Do not use it.
 
 ```ts
 // Bad
-var foo = someValue; // Don't use — var scoping is complex and causes bugs.
+var foo = someValue; // Do not use. The scope rules of var are complex and cause bugs.
 ```
 
-Variables must not be used before their declaration.
+Do not use variables before their declaration.
 
 ## Exceptions
 
-Always use `new Error()` when instantiating exceptions, instead of just calling
-`Error()`. Both forms create a new `Error` instance, but using `new` is more
-consistent with how other objects are instantiated.
+Always use `new Error()` to create exceptions. Do not call `Error()` without `new`. Both
+forms create a new `Error` instance, but `new` is more consistent with how code
+creates other objects.
 
 ```ts
 // Good
@@ -46,11 +46,11 @@ throw new Error('Foo is not a valid bar.');
 throw Error('Foo is not a valid bar.');
 ```
 
-## Primitive Types & Wrapper Classes
+## Primitive types and wrapper classes
 
-TypeScript code must not instantiate the wrapper classes for the primitive types
-`String`, `Boolean`, and `Number`. Wrapper classes have surprising behaviour,
-such as `new Boolean(false)` evaluating to `true`.
+TypeScript code must not create instances of the wrapper classes for the
+primitive types `String`, `Boolean`, and `Number`. Wrapper classes have
+surprising behavior. For example, `new Boolean(false)` evaluates to `true`.
 
 ```ts
 // Bad
@@ -69,7 +69,7 @@ const n = 5;
 ## Array constructor
 
 TypeScript code must not use the `Array()` constructor, with or without `new`.
-It has confusing and contradictory usage:
+Its usage is confusing and contradictory:
 
 ```ts
 // Bad
@@ -77,15 +77,15 @@ const a = new Array(2); // [undefined, undefined]
 const b = new Array(2, 3); // [2, 3];
 ```
 
-Instead, always use bracket notation to initialize arrays, or `from` to
-initialize an `Array` with a certain size:
+Instead, always use bracket notation to initialize arrays. Or use `from` to
+initialize an `Array` with a specified size:
 
 ```ts
 // Good
 const a = [2];
 const b = [2, 3];
 
-// Equivalent to Array(2):
+// This is equivalent to Array(2).
 const c = [];
 c.length = 2;
 
@@ -95,8 +95,8 @@ Array.from<number>({ length: 5 }).fill(0);
 
 ## Type coercion
 
-TypeScript code may use the `String()` and `Boolean()` (note: no `new`!)
-functions, string template literals, or `!!` to coerce types.
+To coerce types, TypeScript code can use the `String()` and `Boolean()`
+functions (note: without `new`), string template literals, or `!!`.
 
 ```ts
 // Good
@@ -106,26 +106,28 @@ const bool2 = !!str;
 const str2 = `result: ${bool2}`;
 ```
 
-Using string concatenation to cast to string is discouraged, as we check that
-operands to the plus operator are of matching types.
+Avoid string concatenation to cast to a string. Our checks require that the
+operands of the plus operator have matching types.
 
-Code must use `Number()` to parse numeric values, and _must_ check its return
-for `NaN` values explicitly, unless failing to parse is impossible from context.
+Code must use `Number()` to parse numeric values. Code _must_ explicitly
+examine the return value for `NaN`, unless the context makes a parse failure
+impossible.
 
-Note: `Number('')`, `Number(' ')`, and `Number('\t')` would return `0` instead
-of `NaN`. `Number('Infinity')` and `Number('-Infinity')` would return `Infinity`
-and `-Infinity` respectively. These cases may require special handling.
+Note: `Number('')`, `Number(' ')`, and `Number('\t')` return `0`, not `NaN`.
+`Number('Infinity')` and `Number('-Infinity')` return `Infinity` and
+`-Infinity`. These cases can need special code.
 
 ```ts
 // Good
 const aNumber = Number('123');
-if (isNaN(aNumber)) throw new Error(...);  // Handle NaN if the string might not contain a number
-assertFinite(aNumber, ...);                // Optional: if NaN cannot happen because it was validated before.
+if (isNaN(aNumber)) throw new Error(...);  // Handle NaN if the string possibly does not contain a number.
+assertFinite(aNumber, ...);                // Optional: Use if NaN cannot occur because of an earlier validation.
 ```
 
-Code must not use unary plus (`+`) to coerce strings to numbers. Parsing numbers
-can fail, has surprising corner cases, and can be a code smell (parsing at the
-wrong layer). A unary plus is too easy to miss in code reviews given this.
+Code must not use unary plus (`+`) to coerce strings to numbers. A number parse
+can fail and has surprising corner cases. It can also show a design problem,
+for example a parse at the wrong layer. For these reasons, a unary plus is too
+easy to miss in code reviews.
 
 ```ts
 // Bad
@@ -133,28 +135,28 @@ const x = +y;
 ```
 
 Code must also not use `parseInt` or `parseFloat` to parse numbers, except for
-non-base-10 strings (see below). Both of those functions ignore trailing
-characters in the string, which can shadow error conditions (e.g. parsing
-`12 dwarves` as `12`).
+strings that are not base 10 (see below). Both of these functions ignore
+trailing characters in the string. This can hide error conditions. For example,
+they parse `12 dwarves` as `12`.
 
 ```ts
 // Bad
 const n = parseInt(someString, 10); // Error prone,
-const f = parseFloat(someString); // regardless of passing a radix.
+const f = parseFloat(someString); // with or without a radix.
 ```
 
-Code that must parse using a radix _must_ check that its input is a number
-before calling into `parseInt`;
+If code must parse with a radix, it _must_ make sure that the input is a number
+before it calls `parseInt`:
 
 ```ts
 // Good
 if (!/^[a-fA-F0-9]+$/.test(someString)) throw new Error(...);
-// Needed to parse hexadecimal.
-const n = parseInt(someString, 16);  // Only allowed for radix != 10
+// This is necessary to parse hexadecimal.
+const n = parseInt(someString, 16);  // Use only for radix != 10.
 ```
 
-Use `Number()` followed by `Math.floor` or `Math.trunc` (where available) to
-parse integer numbers:
+To parse integer numbers, use `Number()`, then `Math.floor` or `Math.trunc`
+(where available):
 
 ```ts
 // Good
@@ -164,7 +166,7 @@ f = Math.floor(f);
 ```
 
 Do not use explicit boolean coercions in conditional clauses that have implicit
-boolean coercion. Those are the conditions in an `if`, `for` and `while`
+boolean coercion. These are the conditions in `if`, `for`, and `while`
 statements.
 
 ```ts
@@ -181,25 +183,26 @@ if (foo) {...}
 while (foo) {...}
 ```
 
-Code may use explicit comparisons:
+Code can use explicit comparisons:
 
 ```ts
 // Good
-// Explicitly comparing > 0 is OK:
+// An explicit comparison with > 0 is OK.
 if (arr.length > 0) {...}
-// so is relying on boolean coercion:
+// Implicit boolean coercion is also OK.
 if (arr.length) {...}
 ```
 
-## Automatic Semicolon Insertion
+## Automatic semicolon insertion
 
-Do not rely on Automatic Semicolon Insertion (ASI). Explicitly terminate all
-statements using a semicolon. This prevents bugs due to incorrect semicolon
-insertions and ensures compatibility with tools with limited ASI support.
+Do not rely on automatic semicolon insertion (ASI). End all statements
+explicitly with a semicolon. This prevents bugs from incorrect semicolon
+insertions. It also makes sure that tools with limited ASI support can use the
+code.
 
 ## Debugger statements
 
-Debugger statements must not be included in production code.
+Do not include debugger statements in production code.
 
 ```ts
 // Bad
@@ -210,27 +213,27 @@ function debugMe() {
 
 ## Enums
 
-Always use `enum` and not `const enum`. TypeScript enums already cannot be
-mutated; `const enum` is a separate language feature related to optimization
-that makes the enum invisible to JavaScript users of the module.
+Always use `enum`, not `const enum`. You cannot change TypeScript enums. A
+`const enum` is a separate language feature for optimization. It makes the enum
+invisible to JavaScript users of the module.
 
 ## Decorators
 
-Decorators are syntax with an `@` prefix, like `@MyDecorator`.
+Decorators are syntax with an `@` prefix, such as `@MyDecorator`.
 
-Do not define new decorators. Only use the decorators defined by frameworks
-(e.g. Angular, NestJS, TypeORM, etc.).
+Do not define new decorators. Use only the decorators that frameworks define
+(for example Angular, NestJS, and TypeORM).
 
-When using decorators, the decorator must immediately precede the symbol it
-decorates, with no empty lines between:
+When you use decorators, put the decorator immediately before the symbol that
+it decorates. Do not put empty lines between them:
 
 ```ts
-/** JSDoc comments go before decorators */
-@Component({...})  // Note: no empty line after the decorator.
+/** JSDoc comments go before decorators. */
+@Component({...})  // Note: There is no empty line after the decorator.
 class MyComp {
-  @Input() myField: string;  // Decorators on fields may be on the same line...
+  @Input() myField: string;  // Decorators on fields can be on the same line...
 
   @Input()
-  myOtherField: string;  // ... or wrap.
+  myOtherField: string;  // ... or on the next line.
 }
 ```
