@@ -17,7 +17,7 @@ metadata:
 
 **Each change goes through these phases: Understand → Quality gates → Plan → Red/green test-driven development (TDD) → Verify. There are no exceptions.**
 
-If you obey the words of a rule but not its purpose, you break the rule.
+If you break the written requirements of these rules, you also act against their purpose.
 
 Use this workflow for each prompt that changes code. Do not skip steps.
 
@@ -25,13 +25,14 @@ Use this workflow for each prompt that changes code. Do not skip steps.
 
 1. **Read the prompt carefully.** Find what the prompt asks for. For example, a new feature, a bug fix, or a refactor.
 2. **If the requirements are not clear, ask questions.** Ask them before you write code. Do not guess the business logic.
-3. **Search the codebase.** Find existing patterns, conventions, and related code. Read each file that you plan to change _before_ you change it.
+3. **Search the codebase.** Find existing patterns, conventions, and related code.
+4. **Read each file that you plan to change** _before_ you change it.
 
 ## Phase 2: Quality gates
 
 Before you plan the implementation, find the validation commands of the project. Examine these sources in this order:
 
-- **Makefile**: If the `Makefile` has targets for the quality gates, use this file.
+- **Makefile**: If the `Makefile` has targets for the quality gates, prefer this file.
 - **package.json**: If the `Makefile` has no quality gates and `package.json` has quality gate scripts, use this file.
 - **scripts/**: If there is no `Makefile` or `package.json` and `scripts/` has quality gate scripts, use `scripts/`.
 - **Project documentation**: If none of the sources above exist, read the project documentation to find the quality gates.
@@ -97,9 +98,9 @@ Do the red/green cycle for each behavior in your plan.
 ## Phase 5: Verify
 
 1. **Run the full test suite** one last time. Make sure that all tests pass.
-2. **Run the formatter.** If the project has a formatter, use the standard format command of the project.
-3. **Run the linter.** If the project has a linter, run it. Fix the problems that your changes caused.
-4. **Run the type checker.** If the project has a type checker, run it. Fix the problems that your changes caused.
+2. **If the project has a formatter, run it.** Use the standard format command of the project.
+3. **If the project has a linter, run it.** Fix the problems that your changes caused.
+4. **If the project has a type checker, run it.** Fix the problems that your changes caused.
 5. **Review your diff.** Look for debug code, commented-out lines, and unnecessary changes.
 6. **Give the user a summary of your work.** Tell the user about each difference from the plan. Tell the user which verification commands passed.
 

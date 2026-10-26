@@ -68,8 +68,8 @@ For example, do not declare types in `@param` or `@return` blocks. Do not write
 
 Do not use `@override` in TypeScript source code.
 
-The compiler does not enforce `@override`. This is surprising, and the
-annotations and the implementation can then go out of sync. If you add
+The compiler does not enforce `@override`. Users do not expect this. Thus, the
+annotations and the implementation can become inconsistent. If you add
 `@override` only for documentation, it causes confusion.
 
 ## Make comments that actually add information
@@ -163,7 +163,7 @@ export class Percolator implements CoffeeBrewer {
 
 ## Put documentation before decorators
 
-If a class, method, or property has a decorator such as `@Component` and also
+If a class, method, or property has a decorator such as `@Component` and
 JSDoc, write the JSDoc before the decorator.
 
 ```ts

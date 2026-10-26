@@ -10,8 +10,8 @@ metadata:
 
 ## Function declarations
 
-Use `function foo() { ... }` to declare named functions, including functions in
-nested scopes, for example in another function.
+Use `function foo() { ... }` to declare named functions. This rule also applies
+to functions in nested scopes, for example in another function.
 
 Use function declarations instead of function expressions that you assign to a
 local variable (~~`const x = function() {...};`~~). TypeScript already does not

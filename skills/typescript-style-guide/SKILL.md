@@ -66,7 +66,7 @@ Key rules:
 - Use `readonly` for properties that the code never reassigns outside the constructor.
 - Use parameter properties instead of manual assignment.
 - When possible, initialize fields where you declare them.
-- Use semicolons, not commas, in interface and class member declarations.
+- Use semicolons, not commas, in interface, class, and object type member declarations.
 
 ### [Functions](rules/functions.md)
 
@@ -85,7 +85,7 @@ Key rules:
 - Do not use the `Array()` constructor. Use bracket notation or `Array.from()`.
 - Use `Number()` to parse numbers. Always check for `NaN`.
 - Do not use unary `+` or `parseInt`/`parseFloat` (except for numbers that are not base 10).
-- Do not rely on Automatic Semicolon Insertion. Always use semicolons.
+- Do not rely on automatic semicolon insertion. Always use semicolons.
 - Always use `enum`, not `const enum`.
 - Do not use `debugger` statements in production code.
 - Do not define new decorators. Use only the decorators that a framework provides.

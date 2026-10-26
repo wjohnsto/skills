@@ -42,9 +42,10 @@ class Foo {
 
 Constructor calls must use parentheses, even when the call has no arguments:
 
+<!-- prettier-ignore -->
 ```ts
 // Bad
-const x = new Foo();
+const x = new Foo;
 ```
 
 ```ts
@@ -240,8 +241,9 @@ class Bar {
 
 ## Member property declarations
 
-Interface and class declarations must use the `;` character to separate
-individual member declarations:
+Interface, class, and object type declarations must use the `;` character to
+separate individual member declarations. This rule agrees with the output of
+Prettier.
 
 ```ts
 // Good
@@ -249,27 +251,24 @@ interface Foo {
     memberA: string;
     memberB: number;
 }
-```
 
-Interfaces must not use the `,` character to separate fields. This keeps them
-symmetrical with class declarations:
-
-```ts
-// Bad
-interface Foo {
-    memberA: string;
-    memberB: number;
-}
-```
-
-Inline object type declarations must use the comma as a separator:
-
-```ts
-// Good
 type SomeTypeAlias = {
     memberA: string;
     memberB: number;
 };
 
 let someProperty: { memberC: string; memberD: number };
+```
+
+Do not use the `,` character to separate members:
+
+<!-- prettier-ignore -->
+```ts
+// Bad
+interface Foo {
+    memberA: string,
+    memberB: number,
+}
+
+let someProperty: { memberC: string, memberD: number };
 ```

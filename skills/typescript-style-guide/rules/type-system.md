@@ -205,8 +205,8 @@ type User = {
 
 ## `Array<T>` type
 
-For simple types (that contain only alphanumeric characters and dots), use the
-short array syntax, `T[]`, not the longer form `Array<T>`.
+Simple types contain only alphanumeric characters and dots. For these types,
+use the short array syntax, `T[]`, not the longer form `Array<T>`.
 
 For all more complex types, use the longer form `Array<T>`.
 
@@ -459,7 +459,7 @@ type:
 
 ```ts
 // Good
-function splitHostPort(address: string): {host: string, port: number} {
+function splitHostPort(address: string): {host: string; port: number} {
   ...
 }
 

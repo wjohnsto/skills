@@ -24,10 +24,13 @@ if (x) {
 }
 ```
 
+<!-- prettier-ignore -->
 ```ts
 // Bad
-if (x) x.doFoo();
-for (let i = 0; i < x; i++) doSomethingWithALongMethodName(i);
+if (x)
+    x.doFoo();
+for (let i = 0; i < x; i++)
+    doSomethingWithALongMethodName(i);
 ```
 
 Exception: if an `if` statement fits on one line, you can omit the block.

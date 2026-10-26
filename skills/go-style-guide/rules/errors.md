@@ -18,7 +18,7 @@ description: >-
 
 - Keep common `if err != nil` checks straightforward unless you have a strong
   reason to deviate.
-- If a subtle error check is different from the common pattern, make that
+- If a subtle error check differs from the common pattern, make that
   difference obvious with structure or a short comment.
 - Avoid helpers that hide important failure logic if the caller must see that
   logic to know that the code is correct.

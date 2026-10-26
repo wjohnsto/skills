@@ -50,7 +50,7 @@ throw Error('Foo is not a valid bar.');
 
 TypeScript code must not create instances of the wrapper classes for the
 primitive types `String`, `Boolean`, and `Number`. Wrapper classes have
-surprising behavior. For example, `new Boolean(false)` evaluates to `true`.
+unexpected behavior. For example, `new Boolean(false)` evaluates to `true`.
 
 ```ts
 // Bad
