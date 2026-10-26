@@ -1,4 +1,0 @@
-packages:
-  - "scripts/**"
-allowBuilds:
-  esbuild: true
