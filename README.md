@@ -13,6 +13,7 @@ skills/
 ├── skills/                      # All skills live here
 │   ├── agent-coding-guide/      # Coding workflow and project setup guidance
 │   ├── go-style-guide/          # Go style rules
+│   ├── review-loop/             # Owner and reviewer loop until approval
 │   ├── typescript-style-guide/  # TypeScript style rules
 │   ├── visual-guide/            # UI, theme, and component guidance
 │   └── writing-guide/           # Writing and docs guidance
@@ -113,6 +114,7 @@ Note: Directories starting with `_` (like `_template`) are skipped during valida
 | --- | --- | --- | --- |
 | `agent-coding-guide` | Discipline | Implementing a feature, bug fix, or refactor before writing implementation code | Understand-plan-test-verify workflow, quality gates, TDD, validation, and project setup guidance |
 | `go-style-guide` | Discipline | Writing, reviewing, refactoring, or resolving style questions in Go code | Google's Go style guidance for readability, naming, formatting, packages, comments, errors, interfaces, and testing |
+| `review-loop` | Discipline | The user asks for a "review loop" | Owner and reviewer roles, the review loop until GPT-6.1 Sol approves, owner final say, and scope creep control |
 | `typescript-style-guide` | Discipline | Writing, reviewing, refactoring, or setting up TypeScript code | Identifier naming, comments, classes, functions, variables, control flow, type safety, imports, exports, and type system rules |
 | `visual-guide` | Reference | Building frontend UI components or pages | Brand colors, typography, spacing, buttons, forms, dark theme, layout constraints, component patterns, icons, and design tokens |
 | `writing-guide` | Discipline | Writing or reviewing docs, READMEs, tutorials, code comments, blog posts, or other content | ASD-STE100 (Simplified Technical English) rules for technical content, blog voice, active voice, punctuation, sentence case, CTAs, and common writing red flags |
